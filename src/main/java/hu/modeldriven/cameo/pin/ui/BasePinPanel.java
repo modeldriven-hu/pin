@@ -4,6 +4,8 @@
  */
 package hu.modeldriven.cameo.pin.ui;
 
+import hu.modeldriven.cameo.pin.model.CloneMethodModel;
+
 /**
  *
  * @author Zsolt
@@ -88,8 +90,6 @@ public class BasePinPanel extends javax.swing.JPanel {
 
         jLabel5.setText("Clone methods:");
 
-        cloneMethodsComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         javax.swing.GroupLayout propertiesPanelLayout = new javax.swing.GroupLayout(propertiesPanel);
         propertiesPanel.setLayout(propertiesPanelLayout);
         propertiesPanelLayout.setHorizontalGroup(
@@ -97,14 +97,12 @@ public class BasePinPanel extends javax.swing.JPanel {
             .addGroup(propertiesPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(propertiesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(propertiesPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(43, 43, 43)
-                        .addComponent(sourcePinComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(propertiesPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(18, 18, 18)
-                        .addComponent(cloneMethodsComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel4))
+                .addGap(18, 18, 18)
+                .addGroup(propertiesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(sourcePinComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cloneMethodsComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         propertiesPanelLayout.setVerticalGroup(
@@ -211,7 +209,7 @@ public class BasePinPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bottomPanel;
     protected javax.swing.JButton cancelButton;
-    protected javax.swing.JComboBox<String> cloneMethodsComboBox;
+    protected javax.swing.JComboBox<CloneMethodModel> cloneMethodsComboBox;
     protected javax.swing.JCheckBox clonePropertiesCheckBox;
     private javax.swing.JPanel contentPanel;
     protected javax.swing.JButton editButton;
