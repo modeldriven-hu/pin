@@ -1,6 +1,8 @@
 package hu.modeldriven.cameo.pin.ui;
 
 import hu.modeldriven.core.eventbus.EventBus;
+import hu.modeldriven.core.magicdraw.MagicDrawElementFactory;
+
 import java.awt.Frame;
 import javax.swing.JDialog;
 import javax.swing.SwingUtilities;
@@ -12,10 +14,10 @@ public class PinDialog extends JDialog {
 
     private final PinPanel panel;
 
-    public PinDialog(Frame parent, EventBus eventBus) {
+    public PinDialog(Frame parent, EventBus eventBus, MagicDrawElementFactory factory) {
         super(parent, "Pin action", false);
 
-        this.panel = new PinPanel(eventBus);
+        this.panel = new PinPanel(eventBus, factory);
 
         //eventBus.subscribe(CloseDialogRequestedEvent.class, this::closeDialogRequested);
         this.setContentPane(panel);
@@ -37,7 +39,7 @@ public class PinDialog extends JDialog {
                         UIManager.getSystemLookAndFeelClassName());
 
                 var eventBus = new EventBus();
-                var dialog = new PinDialog(null, eventBus);
+                var dialog = new PinDialog(null, eventBus, null);
                 dialog.setVisible(true);
 
             } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | UnsupportedLookAndFeelException e) {

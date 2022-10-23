@@ -1,14 +1,24 @@
 package hu.modeldriven.cameo.pin.ui;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+import hu.modeldriven.core.eventbus.EventBus;
 
-/**
- *
- * @author Zsolt
- */
+import javax.swing.*;
+
 public class TestDialog {
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+
+            try {
+                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+
+            var eventBus = new EventBus();
+            var dialog = new PinDialog(null, eventBus, null);
+            dialog.setVisible(true);
+        });
+    }
     
 }

@@ -76,8 +76,6 @@ public class BasePinPanel extends javax.swing.JPanel {
 
         jLabel3.setText("Select multiplicity:");
 
-        multiplicityComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         showNameCheckBox.setText("Show name");
 
         clonePropertiesCheckBox.setText("Clone properties");
@@ -219,7 +217,7 @@ public class BasePinPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     protected javax.swing.JButton modifyButton;
-    protected javax.swing.JComboBox<String> multiplicityComboBox;
+    protected javax.swing.JComboBox<hu.modeldriven.cameo.pin.model.multiplicity.Multiplicity> multiplicityComboBox;
     private javax.swing.JPanel propertiesPanel;
     protected javax.swing.JCheckBox showNameCheckBox;
     protected javax.swing.JComboBox<String> sourcePinComboBox;
