@@ -44,7 +44,7 @@ public class BasePinPanel extends javax.swing.JPanel {
         editButton = new javax.swing.JButton();
         bottomPanel = new javax.swing.JPanel();
         cancelButton = new javax.swing.JButton();
-        modifyButton = new javax.swing.JButton();
+        applyButton = new javax.swing.JButton();
 
         topPanel.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -81,6 +81,7 @@ public class BasePinPanel extends javax.swing.JPanel {
         clonePropertiesCheckBox.setText("Clone properties");
 
         propertiesPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Properties"));
+        propertiesPanel.setEnabled(false);
 
         jLabel4.setText("Source pin:");
 
@@ -159,7 +160,7 @@ public class BasePinPanel extends javax.swing.JPanel {
 
         cancelButton.setText("Cancel");
 
-        modifyButton.setText("Modify");
+        applyButton.setText("Apply");
 
         javax.swing.GroupLayout bottomPanelLayout = new javax.swing.GroupLayout(bottomPanel);
         bottomPanel.setLayout(bottomPanelLayout);
@@ -167,7 +168,7 @@ public class BasePinPanel extends javax.swing.JPanel {
             bottomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bottomPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(modifyButton)
+                .addComponent(applyButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(cancelButton)
                 .addContainerGap())
@@ -176,7 +177,7 @@ public class BasePinPanel extends javax.swing.JPanel {
             bottomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bottomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(cancelButton)
-                .addComponent(modifyButton))
+                .addComponent(applyButton))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -205,6 +206,7 @@ public class BasePinPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    protected javax.swing.JButton applyButton;
     private javax.swing.JPanel bottomPanel;
     protected javax.swing.JButton cancelButton;
     protected javax.swing.JComboBox<CloneMethodModel> cloneMethodsComboBox;
@@ -216,9 +218,8 @@ public class BasePinPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    protected javax.swing.JButton modifyButton;
     protected javax.swing.JComboBox<hu.modeldriven.cameo.pin.model.multiplicity.Multiplicity> multiplicityComboBox;
-    private javax.swing.JPanel propertiesPanel;
+    protected javax.swing.JPanel propertiesPanel;
     protected javax.swing.JCheckBox showNameCheckBox;
     protected javax.swing.JComboBox<String> sourcePinComboBox;
     private javax.swing.JPanel topPanel;

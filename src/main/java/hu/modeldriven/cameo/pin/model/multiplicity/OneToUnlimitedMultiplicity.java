@@ -10,7 +10,7 @@ public class OneToUnlimitedMultiplicity extends Multiplicity{
 
     @Override
     public String toString(){
-        return "1 .. *";
+        return "1..*";
     }
 
 }

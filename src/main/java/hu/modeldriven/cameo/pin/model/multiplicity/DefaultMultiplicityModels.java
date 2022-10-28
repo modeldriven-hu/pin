@@ -18,11 +18,12 @@ public class DefaultMultiplicityModels {
     public List<Multiplicity> asList(){
         var list = new ArrayList<Multiplicity>();
 
-        list.add(new UndefinedMultiplicity(factory));
+        list.add(new UndefinedMultiplicity());
         list.add(new ZeroToOneMultiplicity(factory));
         list.add(new OneToOneMultiplicity(factory));
         list.add(new ZeroToUnlimitedMultiplicity(factory));
         list.add(new OneToUnlimitedMultiplicity(factory));
+        list.add(new UnlimitedMultiplicity(factory));
 
         return list;
     }

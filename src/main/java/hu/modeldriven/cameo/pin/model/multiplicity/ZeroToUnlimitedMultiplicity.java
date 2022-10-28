@@ -10,7 +10,7 @@ public class ZeroToUnlimitedMultiplicity extends Multiplicity{
 
     @Override
     public String toString(){
-        return "0 .. *";
+        return "0..*";
     }
 
 }

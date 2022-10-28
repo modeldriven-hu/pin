@@ -1,5 +1,6 @@
 package hu.modeldriven.cameo.pin.model.multiplicity;
 
+import com.nomagic.uml2.ext.magicdraw.classes.mdkernel.MultiplicityElement;
 import com.nomagic.uml2.ext.magicdraw.classes.mdkernel.ValueSpecification;
 
 import java.util.function.Supplier;
@@ -13,11 +14,9 @@ public abstract class Multiplicity {
         this.upperValue = upperValue;
     }
 
-    public ValueSpecification getLowerValue() {
-        return this.lowerValue.get();
+    public void apply(MultiplicityElement element){
+        element.setLowerValue(lowerValue.get());
+        element.setUpperValue(upperValue.get());
     }
 
-    public ValueSpecification getUpperValue() {
-        return this.upperValue.get();
-    }
 }
