@@ -1,5 +1,6 @@
 package hu.modeldriven.cameo.pin.model.multiplicity;
 
+import hu.modeldriven.cameo.pin.model.Multiplicity;
 import hu.modeldriven.core.magicdraw.MagicDrawElementFactory;
 
 public class OneToOneMultiplicity extends Multiplicity {

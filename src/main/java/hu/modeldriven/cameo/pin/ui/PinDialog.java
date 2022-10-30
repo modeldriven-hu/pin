@@ -1,6 +1,6 @@
 package hu.modeldriven.cameo.pin.ui;
 
-import hu.modeldriven.cameo.pin.model.SourcePinModel;
+import hu.modeldriven.cameo.pin.model.SourcePin;
 import hu.modeldriven.cameo.pin.usecase.CloseDialogUseCase;
 import hu.modeldriven.core.eventbus.EventBus;
 import hu.modeldriven.core.magicdraw.MagicDrawElementFactory;
@@ -29,26 +29,11 @@ public class PinDialog extends JDialog {
         this.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
     }
 
-    public void setSelectedPins(List<SourcePinModel> pins) {
+    public void setSelectedPins(List<SourcePin> pins) {
         this.panel.setSelectedPins(pins);
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-
-            try {
-                UIManager.setLookAndFeel(
-                        UIManager.getSystemLookAndFeelClassName());
-
-                var eventBus = new EventBus();
-                var dialog = new PinDialog(null, eventBus, null);
-                dialog.setVisible(true);
-
-            } catch (ClassNotFoundException | IllegalAccessException | InstantiationException |
-                     UnsupportedLookAndFeelException e) {
-                e.printStackTrace();
-            }
-        });
+    public PinPanel getPinPanel() {
+        return (PinPanel) this.getContentPane();
     }
-
 }

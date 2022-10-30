@@ -4,8 +4,9 @@
  */
 package hu.modeldriven.cameo.pin.ui;
 
-import hu.modeldriven.cameo.pin.model.CloneMethodModel;
-import hu.modeldriven.cameo.pin.model.SourcePinModel;
+import hu.modeldriven.cameo.pin.model.CloneMethod;
+import hu.modeldriven.cameo.pin.model.Multiplicity;
+import hu.modeldriven.cameo.pin.model.SourcePin;
 
 /**
  * @author Zsolt
@@ -207,7 +208,7 @@ public class BasePinPanel extends javax.swing.JPanel {
     protected javax.swing.JButton applyButton;
     private javax.swing.JPanel bottomPanel;
     protected javax.swing.JButton cancelButton;
-    protected javax.swing.JComboBox<CloneMethodModel> cloneMethodsComboBox;
+    protected javax.swing.JComboBox<CloneMethod> cloneMethodsComboBox;
     protected javax.swing.JCheckBox clonePropertiesCheckBox;
     private javax.swing.JPanel contentPanel;
     protected javax.swing.JButton editButton;
@@ -216,10 +217,10 @@ public class BasePinPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    protected javax.swing.JComboBox<hu.modeldriven.cameo.pin.model.multiplicity.Multiplicity> multiplicityComboBox;
+    protected javax.swing.JComboBox<Multiplicity> multiplicityComboBox;
     protected javax.swing.JPanel propertiesPanel;
     protected javax.swing.JCheckBox showNameCheckBox;
-    protected javax.swing.JComboBox<SourcePinModel> sourcePinComboBox;
+    protected javax.swing.JComboBox<SourcePin> sourcePinComboBox;
     private javax.swing.JPanel topPanel;
     // End of variables declaration//GEN-END:variables
 }

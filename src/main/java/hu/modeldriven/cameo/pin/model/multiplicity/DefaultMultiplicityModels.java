@@ -1,5 +1,6 @@
 package hu.modeldriven.cameo.pin.model.multiplicity;
 
+import hu.modeldriven.cameo.pin.model.Multiplicity;
 import hu.modeldriven.core.magicdraw.MagicDrawElementFactory;
 
 import java.util.ArrayList;

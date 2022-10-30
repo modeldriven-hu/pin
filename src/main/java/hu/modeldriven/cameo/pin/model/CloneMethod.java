@@ -1,6 +1,6 @@
 package hu.modeldriven.cameo.pin.model;
 
-public enum CloneMethodModel {
+public enum CloneMethod {
 
     NAME("Name"),
     TYPE("Type"),
@@ -8,7 +8,7 @@ public enum CloneMethodModel {
 
     private final String displayName;
 
-    CloneMethodModel(String displayName) {
+    CloneMethod(String displayName) {
         this.displayName = displayName;
     }
 

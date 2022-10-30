@@ -5,8 +5,10 @@ import com.nomagic.magicdraw.ui.actions.DefaultDiagramAction;
 import com.nomagic.magicdraw.ui.dialogs.MDDialogParentProvider;
 import hu.modeldriven.cameo.pin.event.PresentationElementsSelectedEvent;
 import hu.modeldriven.cameo.pin.ui.PinDialog;
+import hu.modeldriven.cameo.pin.usecase.CloneNameAndTypeFromPinUseCase;
 import hu.modeldriven.cameo.pin.usecase.DisplayDialogUseCase;
 import hu.modeldriven.cameo.pin.usecase.FilterSelectedPresentationElementsUseCase;
+import hu.modeldriven.cameo.pin.usecase.SetMultiplicityOnPinsUseCase;
 import hu.modeldriven.core.eventbus.EventBus;
 import hu.modeldriven.core.magicdraw.MagicDrawElementFactory;
 import hu.modeldriven.core.usecase.UseCase;
@@ -30,7 +32,9 @@ public class PinAction extends DefaultDiagramAction {
 
         this.initialUsecases = new UseCase[]{
                 new FilterSelectedPresentationElementsUseCase(eventBus),
-                new DisplayDialogUseCase(eventBus, dialog)
+                new DisplayDialogUseCase(eventBus, dialog),
+                new SetMultiplicityOnPinsUseCase(eventBus, dialog.getPinPanel()),
+                new CloneNameAndTypeFromPinUseCase(eventBus, dialog.getPinPanel())
         };
     }
 

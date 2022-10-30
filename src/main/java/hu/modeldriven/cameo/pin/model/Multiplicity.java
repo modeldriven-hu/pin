@@ -1,4 +1,4 @@
-package hu.modeldriven.cameo.pin.model.multiplicity;
+package hu.modeldriven.cameo.pin.model;
 
 import com.nomagic.uml2.ext.magicdraw.classes.mdkernel.MultiplicityElement;
 import com.nomagic.uml2.ext.magicdraw.classes.mdkernel.ValueSpecification;

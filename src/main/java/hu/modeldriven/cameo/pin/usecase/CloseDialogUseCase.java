@@ -1,6 +1,8 @@
 package hu.modeldriven.cameo.pin.usecase;
 
 import hu.modeldriven.cameo.pin.event.CloseDialogRequestedEvent;
+import hu.modeldriven.cameo.pin.event.PinNameAndTypeClonedEvent;
+import hu.modeldriven.core.eventbus.Event;
 import hu.modeldriven.core.eventbus.EventBus;
 import hu.modeldriven.core.usecase.UseCase;
 
@@ -13,9 +15,10 @@ public class CloseDialogUseCase implements UseCase {
     public CloseDialogUseCase(EventBus eventBus, JDialog dialog) {
         this.dialog = dialog;
         eventBus.subscribe(CloseDialogRequestedEvent.class, this::onCloseDialogRequestedEvent);
+        eventBus.subscribe(PinNameAndTypeClonedEvent.class, this::onCloseDialogRequestedEvent);
     }
 
-    private void onCloseDialogRequestedEvent(CloseDialogRequestedEvent t) {
+    private void onCloseDialogRequestedEvent(Event t) {
         dialog.setVisible(false);
     }
 }
