@@ -8,13 +8,13 @@ import java.util.function.Supplier;
 public abstract class Multiplicity {
     private final Supplier<ValueSpecification> lowerValue;
     private final Supplier<ValueSpecification> upperValue;
-    
-    public Multiplicity(Supplier<ValueSpecification> lowerValue, Supplier<ValueSpecification> upperValue){
+
+    public Multiplicity(Supplier<ValueSpecification> lowerValue, Supplier<ValueSpecification> upperValue) {
         this.lowerValue = lowerValue;
         this.upperValue = upperValue;
     }
 
-    public void apply(MultiplicityElement element){
+    public void apply(MultiplicityElement element) {
         element.setLowerValue(lowerValue.get());
         element.setUpperValue(upperValue.get());
     }

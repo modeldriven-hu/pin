@@ -8,17 +8,17 @@ public class MagicDrawElementFactory {
 
     private final ElementsFactory factory;
 
-    public MagicDrawElementFactory(ElementsFactory factory){
+    public MagicDrawElementFactory(ElementsFactory factory) {
         this.factory = factory;
     }
 
-    public LiteralInteger createLiteralInteger(int value){
+    public LiteralInteger createLiteralInteger(int value) {
         var literalInteger = factory.createLiteralIntegerInstance();
         literalInteger.setValue(value);
         return literalInteger;
     }
 
-    public LiteralUnlimitedNatural createLiteralUnlimitedNatural(){
+    public LiteralUnlimitedNatural createLiteralUnlimitedNatural() {
         var result = factory.createLiteralUnlimitedNaturalInstance();
         return result;
     }

@@ -1,25 +1,27 @@
 package hu.modeldriven.cameo.pin.ui;
 
+import hu.modeldriven.cameo.pin.model.SourcePinModel;
+import hu.modeldriven.cameo.pin.usecase.CloseDialogUseCase;
 import hu.modeldriven.core.eventbus.EventBus;
 import hu.modeldriven.core.magicdraw.MagicDrawElementFactory;
+import hu.modeldriven.core.usecase.UseCase;
 
-import java.awt.Frame;
-import javax.swing.JDialog;
-import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
-import javax.swing.WindowConstants;
+import javax.swing.*;
+import java.awt.*;
+import java.util.List;
 
 public class PinDialog extends JDialog {
 
     private final PinPanel panel;
+    private final UseCase closeDialogUseCase;
 
     public PinDialog(Frame parent, EventBus eventBus, MagicDrawElementFactory factory) {
         super(parent, "Pin action", false);
 
+        this.closeDialogUseCase = new CloseDialogUseCase(eventBus, this);
+
         this.panel = new PinPanel(eventBus, factory);
 
-        //eventBus.subscribe(CloseDialogRequestedEvent.class, this::closeDialogRequested);
         this.setContentPane(panel);
         this.pack();
 
@@ -27,10 +29,10 @@ public class PinDialog extends JDialog {
         this.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
     }
 
-    /*
-    private void closeDialogRequested(CloseDialogRequestedEvent event) {
-        PinDialog.this.setVisible(false);
-    }*/
+    public void setSelectedPins(List<SourcePinModel> pins) {
+        this.panel.setSelectedPins(pins);
+    }
+
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
 
@@ -42,7 +44,8 @@ public class PinDialog extends JDialog {
                 var dialog = new PinDialog(null, eventBus, null);
                 dialog.setVisible(true);
 
-            } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | UnsupportedLookAndFeelException e) {
+            } catch (ClassNotFoundException | IllegalAccessException | InstantiationException |
+                     UnsupportedLookAndFeelException e) {
                 e.printStackTrace();
             }
         });

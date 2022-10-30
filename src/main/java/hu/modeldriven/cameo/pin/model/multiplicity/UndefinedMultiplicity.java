@@ -1,11 +1,10 @@
 package hu.modeldriven.cameo.pin.model.multiplicity;
 
 import com.nomagic.uml2.ext.magicdraw.classes.mdkernel.MultiplicityElement;
-import hu.modeldriven.core.magicdraw.MagicDrawElementFactory;
 
 public class UndefinedMultiplicity extends Multiplicity {
 
-    public UndefinedMultiplicity(){
+    public UndefinedMultiplicity() {
         super(() -> null, () -> null);
     }
 

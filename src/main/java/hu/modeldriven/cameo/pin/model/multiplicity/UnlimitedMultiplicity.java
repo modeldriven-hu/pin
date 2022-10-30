@@ -2,14 +2,14 @@ package hu.modeldriven.cameo.pin.model.multiplicity;
 
 import hu.modeldriven.core.magicdraw.MagicDrawElementFactory;
 
-public class UnlimitedMultiplicity extends Multiplicity{
+public class UnlimitedMultiplicity extends Multiplicity {
 
-    public UnlimitedMultiplicity(MagicDrawElementFactory factory){
+    public UnlimitedMultiplicity(MagicDrawElementFactory factory) {
         super(() -> null, () -> factory.createLiteralUnlimitedNatural());
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return "*";
     }
 
