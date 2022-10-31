@@ -7,7 +7,7 @@ public interface CloneSource {
 
     void apply(Project project, Pin pin);
 
-    class Default implements CloneSource{
+    class Default implements CloneSource {
 
         @Override
         public void apply(Project project, Pin pin) {

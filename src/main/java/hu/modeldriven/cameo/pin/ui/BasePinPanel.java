@@ -5,7 +5,6 @@
 package hu.modeldriven.cameo.pin.ui;
 
 import hu.modeldriven.cameo.pin.model.CloneMethod;
-import hu.modeldriven.cameo.pin.model.Multiplicity;
 import hu.modeldriven.cameo.pin.model.SourcePin;
 
 /**
@@ -35,7 +34,6 @@ public class BasePinPanel extends javax.swing.JPanel {
         contentPanel = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         multiplicityComboBox = new javax.swing.JComboBox<>();
-        showNameCheckBox = new javax.swing.JCheckBox();
         clonePropertiesCheckBox = new javax.swing.JCheckBox();
         propertiesPanel = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -76,8 +74,6 @@ public class BasePinPanel extends javax.swing.JPanel {
         );
 
         jLabel3.setText("Select multiplicity:");
-
-        showNameCheckBox.setText("Show name");
 
         clonePropertiesCheckBox.setText("Clone properties");
 
@@ -124,9 +120,7 @@ public class BasePinPanel extends javax.swing.JPanel {
         contentPanelLayout.setHorizontalGroup(
                 contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(contentPanelLayout.createSequentialGroup()
-                                .addGroup(contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(showNameCheckBox)
-                                        .addComponent(clonePropertiesCheckBox))
+                                .addComponent(clonePropertiesCheckBox)
                                 .addGap(0, 0, Short.MAX_VALUE))
                         .addGroup(contentPanelLayout.createSequentialGroup()
                                 .addContainerGap()
@@ -149,12 +143,10 @@ public class BasePinPanel extends javax.swing.JPanel {
                                         .addComponent(multiplicityComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(editButton))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(showNameCheckBox)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(clonePropertiesCheckBox)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(propertiesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         cancelButton.setText("Cancel");
@@ -174,9 +166,11 @@ public class BasePinPanel extends javax.swing.JPanel {
         );
         bottomPanelLayout.setVerticalGroup(
                 bottomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(bottomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(cancelButton)
-                                .addComponent(applyButton))
+                        .addGroup(bottomPanelLayout.createSequentialGroup()
+                                .addGroup(bottomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(cancelButton)
+                                        .addComponent(applyButton))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -217,9 +211,8 @@ public class BasePinPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    protected javax.swing.JComboBox<Multiplicity> multiplicityComboBox;
+    protected javax.swing.JComboBox<hu.modeldriven.cameo.pin.model.Multiplicity> multiplicityComboBox;
     protected javax.swing.JPanel propertiesPanel;
-    protected javax.swing.JCheckBox showNameCheckBox;
     protected javax.swing.JComboBox<SourcePin> sourcePinComboBox;
     private javax.swing.JPanel topPanel;
     // End of variables declaration//GEN-END:variables

@@ -12,7 +12,6 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import java.awt.event.ActionEvent;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -83,9 +82,6 @@ public class PinPanel extends BasePinPanel {
         return (Multiplicity) this.multiplicityComboBox.getModel().getSelectedItem();
     }
 
-    public boolean isShowName() {
-        return showNameCheckBox.isSelected();
-    }
 
     public CloneSource getSelectedCloneSource() {
 
