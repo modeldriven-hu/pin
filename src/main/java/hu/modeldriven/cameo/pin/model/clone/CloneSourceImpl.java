@@ -1,10 +1,10 @@
 package hu.modeldriven.cameo.pin.model.clone;
 
-import com.nomagic.magicdraw.core.Project;
 import com.nomagic.uml2.ext.magicdraw.actions.mdbasicactions.Pin;
 import hu.modeldriven.cameo.pin.model.CloneMethod;
 import hu.modeldriven.cameo.pin.model.CloneSource;
 import hu.modeldriven.cameo.pin.model.ModelElementId;
+import hu.modeldriven.core.magicdraw.MagicDraw;
 
 public class CloneSourceImpl implements CloneSource {
 
@@ -17,10 +17,10 @@ public class CloneSourceImpl implements CloneSource {
     }
 
     @Override
-    public void apply(Project project, Pin pin) {
+    public void apply(MagicDraw magicDraw, Pin pin) {
 
         if (!pin.getID().equals(modelElementId.getId())) {
-            var sourceElement = project.getElementByID(modelElementId.getId());
+            var sourceElement = magicDraw.getElementByID(modelElementId.getId());
 
             if (sourceElement instanceof Pin) {
 
