@@ -3,6 +3,7 @@ package hu.modeldriven.cameo.pin.ui;
 import hu.modeldriven.cameo.pin.event.ApplyChangeRequestedEvent;
 import hu.modeldriven.cameo.pin.event.CloseDialogRequestedEvent;
 import hu.modeldriven.cameo.pin.model.*;
+import hu.modeldriven.cameo.pin.model.clone.CloneSourceImpl;
 import hu.modeldriven.cameo.pin.model.multiplicity.DefaultMultiplicityModels;
 import hu.modeldriven.core.eventbus.EventBus;
 import hu.modeldriven.core.magicdraw.MagicDrawElementFactory;
@@ -10,10 +11,11 @@ import hu.modeldriven.core.magicdraw.MagicDrawElementFactory;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import java.awt.event.ActionEvent;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class PinPanel extends BasePinPanel {
 
@@ -24,17 +26,17 @@ public class PinPanel extends BasePinPanel {
         super();
         this.eventBus = eventBus;
         this.factory = factory;
-        initComponents();
+        initUIComponents();
     }
 
-    private void initComponents() {
+    private void initUIComponents() {
         var multiplicityModels = new DefaultMultiplicityModels(factory);
-
-        this.cloneMethodsComboBox.setModel(new DefaultComboBoxModel<>(CloneMethod.values()));
-        this.cloneMethodsComboBox.setSelectedIndex(0);
 
         this.multiplicityComboBox.setModel(new DefaultComboBoxModel<>(multiplicityModels.asVector()));
         this.multiplicityComboBox.setSelectedIndex(0);
+
+        this.cloneMethodsComboBox.setModel(new DefaultComboBoxModel<>(CloneMethod.values()));
+        this.cloneMethodsComboBox.setSelectedIndex(2);
 
         this.clonePropertiesCheckBox.addChangeListener(this::onClonePropertiesChanged);
 
@@ -45,8 +47,7 @@ public class PinPanel extends BasePinPanel {
     }
 
     private void onClonePropertiesChanged(ChangeEvent e) {
-        var enabled = this.clonePropertiesCheckBox.isSelected();
-        setPropertiesPanelStatus(enabled);
+        setPropertiesPanelStatus(this.clonePropertiesCheckBox.isSelected());
     }
 
     private void setPropertiesPanelStatus(boolean enabled) {
@@ -69,38 +70,32 @@ public class PinPanel extends BasePinPanel {
     }
 
     public Set<ModelElementId> getModelElementIds() {
+        var model = this.sourcePinComboBox.getModel();
 
-        var ids = new LinkedHashSet<ModelElementId>();
-
-        for (int i = 0; i < this.sourcePinComboBox.getModel().getSize(); i++) {
-            var element = this.sourcePinComboBox.getModel().getElementAt(i);
-            ids.add(element.getId());
-        }
-
-        return ids;
+        return IntStream
+                .range(0, model.getSize())
+                .mapToObj(model::getElementAt)
+                .map(SourcePin::getId)
+                .collect(Collectors.toSet());
     }
 
     public Multiplicity getSelectedMultiplicity() {
-        var multiplicity = (Multiplicity) this.multiplicityComboBox.getModel().getSelectedItem();
-
-        return multiplicity;
+        return (Multiplicity) this.multiplicityComboBox.getModel().getSelectedItem();
     }
 
     public boolean isShowName() {
         return showNameCheckBox.isSelected();
     }
 
-    public Optional<CloneSource> getSelectedCloneSource() {
-        Optional<CloneSource> cloneSource = Optional.empty();
+    public CloneSource getSelectedCloneSource() {
 
         if (clonePropertiesCheckBox.isSelected() && sourcePinComboBox.getSelectedItem() != null) {
-            cloneSource = Optional.of(new CloneSource(
+            return new CloneSourceImpl(
                     ((SourcePin) sourcePinComboBox.getSelectedItem()).getId(),
-                    (CloneMethod) (this.cloneMethodsComboBox.getSelectedItem())
-            ));
+                    (CloneMethod) (this.cloneMethodsComboBox.getSelectedItem()));
         }
 
-        return cloneSource;
+        return new CloneSource.Default();
     }
 
 }

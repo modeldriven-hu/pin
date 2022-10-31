@@ -1,5 +1,6 @@
 package hu.modeldriven.cameo.pin.usecase;
 
+import com.nomagic.magicdraw.uml.symbols.PresentationElement;
 import com.nomagic.uml2.ext.magicdraw.actions.mdbasicactions.Pin;
 import hu.modeldriven.cameo.pin.event.PinsSelectedEvent;
 import hu.modeldriven.cameo.pin.event.PresentationElementsSelectedEvent;
@@ -19,8 +20,8 @@ public class FilterSelectedPresentationElementsUseCase implements UseCase {
 
     private void onPresentationElementsSelected(PresentationElementsSelectedEvent event) {
         var selectedPins = event.getPresentationElements().stream()
-                .map(e -> e.getElement())
-                .filter(e -> e instanceof Pin)
+                .map(PresentationElement::getElement)
+                .filter(Pin.class::isInstance)
                 .map(Pin.class::cast)
                 .collect(Collectors.toList());
 

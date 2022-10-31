@@ -6,6 +6,7 @@ import com.nomagic.uml2.ext.magicdraw.classes.mdkernel.MultiplicityElement;
 import hu.modeldriven.cameo.pin.event.ApplyChangeRequestedEvent;
 import hu.modeldriven.cameo.pin.event.CloseDialogRequestedEvent;
 import hu.modeldriven.cameo.pin.event.PinMultiplicitySetEvent;
+import hu.modeldriven.cameo.pin.model.ModelElementId;
 import hu.modeldriven.cameo.pin.ui.PinPanel;
 import hu.modeldriven.core.eventbus.EventBus;
 import hu.modeldriven.core.usecase.UseCase;
@@ -32,20 +33,17 @@ public class SetMultiplicityOnPinsUseCase implements UseCase {
         }
 
         try {
-
             SessionManager.getInstance().createSession(project, "Setting pins multiplicity");
 
             var multiplicity = pinPanel.getSelectedMultiplicity();
 
-            for (var modelElementId : pinPanel.getModelElementIds()) {
-
-                var element = project.getElementByID(modelElementId.getId());
-
-                if (element instanceof MultiplicityElement) {
-                    multiplicity.apply((MultiplicityElement) element);
-                }
-
-            }
+            pinPanel.getModelElementIds()
+                    .stream()
+                    .map(ModelElementId::getId)
+                    .map(project::getElementByID)
+                    .filter(MultiplicityElement.class::isInstance)
+                    .map(MultiplicityElement.class::cast)
+                    .forEach(multiplicity::apply);
 
             SessionManager.getInstance().closeSession(project);
 
