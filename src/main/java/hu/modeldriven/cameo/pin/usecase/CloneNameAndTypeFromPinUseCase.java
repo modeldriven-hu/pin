@@ -3,7 +3,6 @@ package hu.modeldriven.cameo.pin.usecase;
 import com.nomagic.magicdraw.core.Application;
 import com.nomagic.magicdraw.openapi.uml.SessionManager;
 import com.nomagic.uml2.ext.magicdraw.actions.mdbasicactions.Pin;
-import com.nomagic.uml2.ext.magicdraw.classes.mdkernel.MultiplicityElement;
 import hu.modeldriven.cameo.pin.event.CloseDialogRequestedEvent;
 import hu.modeldriven.cameo.pin.event.PinMultiplicitySetEvent;
 import hu.modeldriven.cameo.pin.event.PinNameAndTypeClonedEvent;

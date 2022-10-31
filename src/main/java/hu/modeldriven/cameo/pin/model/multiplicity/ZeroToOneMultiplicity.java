@@ -6,7 +6,7 @@ import hu.modeldriven.core.magicdraw.MagicDrawElementFactory;
 public class ZeroToOneMultiplicity extends Multiplicity {
 
     public ZeroToOneMultiplicity(MagicDrawElementFactory factory) {
-        super(() -> factory.createLiteralInteger(0), () -> factory.createLiteralInteger(1));
+        super(() -> factory.createLiteralInteger(0), () -> factory.createLiteralUnlimitedNatural(1));
     }
 
     @Override

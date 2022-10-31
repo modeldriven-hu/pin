@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin
-        id="lesson3"
-        name="ModelDriven Lesson 3"
+        id="modeldrivenpin"
+        name="ModelDriven Pin Plugin"
         version="1.0"
         provider-name="modeldriven.hu"
-        class="hu.modeldriven.cameo.Lesson3Plugin">
+        class="hu.modeldriven.cameo.pin.PinPlugin">
 
     <requires>
         <api version="1.2"/>
     </requires>
 
     <runtime>
-        <library name="lesson3.jar"/>
+        <library name="pin.jar"/>
     </runtime>
 </plugin>

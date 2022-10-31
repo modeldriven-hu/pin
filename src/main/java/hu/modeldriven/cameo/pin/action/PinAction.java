@@ -1,6 +1,5 @@
 package hu.modeldriven.cameo.pin.action;
 
-import com.nomagic.magicdraw.core.Application;
 import com.nomagic.magicdraw.ui.actions.DefaultDiagramAction;
 import com.nomagic.magicdraw.ui.dialogs.MDDialogParentProvider;
 import hu.modeldriven.cameo.pin.event.PresentationElementsSelectedEvent;
@@ -25,10 +24,11 @@ public class PinAction extends DefaultDiagramAction {
         super(id, name, null, null);
 
         this.eventBus = new EventBus();
-
-        var elementsFactory = Application.getInstance().getProject().getElementsFactory();
-        var factory = new MagicDrawElementFactory(elementsFactory);
-        var dialog = new PinDialog(MDDialogParentProvider.getProvider().getDialogParent(true), eventBus, factory);
+        var dialog = new PinDialog(
+                MDDialogParentProvider.getProvider().getDialogParent(true),
+                eventBus,
+                new MagicDrawElementFactory()
+        );
 
         this.initialUsecases = new UseCase[]{
                 new FilterSelectedPresentationElementsUseCase(eventBus),

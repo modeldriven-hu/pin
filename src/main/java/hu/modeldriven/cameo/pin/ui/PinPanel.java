@@ -2,12 +2,8 @@ package hu.modeldriven.cameo.pin.ui;
 
 import hu.modeldriven.cameo.pin.event.ApplyChangeRequestedEvent;
 import hu.modeldriven.cameo.pin.event.CloseDialogRequestedEvent;
-import hu.modeldriven.cameo.pin.model.CloneMethod;
-import hu.modeldriven.cameo.pin.model.CloneSource;
-import hu.modeldriven.cameo.pin.model.ModelElementId;
-import hu.modeldriven.cameo.pin.model.SourcePin;
+import hu.modeldriven.cameo.pin.model.*;
 import hu.modeldriven.cameo.pin.model.multiplicity.DefaultMultiplicityModels;
-import hu.modeldriven.cameo.pin.model.Multiplicity;
 import hu.modeldriven.core.eventbus.EventBus;
 import hu.modeldriven.core.magicdraw.MagicDrawElementFactory;
 

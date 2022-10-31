@@ -26,7 +26,7 @@ public class SetMultiplicityOnPinsUseCase implements UseCase {
 
         var project = Application.getInstance().getProject();
 
-        if (project == null){
+        if (project == null) {
             eventBus.publish(new CloseDialogRequestedEvent());
             return;
         }
@@ -37,11 +37,11 @@ public class SetMultiplicityOnPinsUseCase implements UseCase {
 
             var multiplicity = pinPanel.getSelectedMultiplicity();
 
-            for (var modelElementId : pinPanel.getModelElementIds()){
+            for (var modelElementId : pinPanel.getModelElementIds()) {
 
                 var element = project.getElementByID(modelElementId.getId());
 
-                if (element instanceof MultiplicityElement){
+                if (element instanceof MultiplicityElement) {
                     multiplicity.apply((MultiplicityElement) element);
                 }
 

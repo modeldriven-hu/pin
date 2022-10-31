@@ -6,7 +6,7 @@ import hu.modeldriven.core.magicdraw.MagicDrawElementFactory;
 public class OneToUnlimitedMultiplicity extends Multiplicity {
 
     public OneToUnlimitedMultiplicity(MagicDrawElementFactory factory) {
-        super(() -> factory.createLiteralInteger(1), () -> factory.createLiteralUnlimitedNatural());
+        super(() -> factory.createLiteralInteger(1), () -> factory.createLiteralUnlimitedNatural(-1));
     }
 
     @Override

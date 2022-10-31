@@ -1,10 +1,7 @@
 package hu.modeldriven.cameo.pin.model;
 
 import com.nomagic.magicdraw.core.Project;
-import com.nomagic.magicdraw.uml.BaseElement;
 import com.nomagic.uml2.ext.magicdraw.actions.mdbasicactions.Pin;
-import com.nomagic.uml2.ext.magicdraw.activities.mdfundamentalactivities.Activity;
-import com.nomagic.uml2.ext.magicdraw.classes.mdkernel.MultiplicityElement;
 
 public class CloneSource {
 
@@ -16,16 +13,32 @@ public class CloneSource {
         this.cloneMethod = cloneMethod;
     }
 
-    public void apply(Project project, Pin pin){
+    public void apply(Project project, Pin pin) {
 
-        if (!pin.getID().equals(modelElementId.getId())){
+        if (!pin.getID().equals(modelElementId.getId())) {
             var sourceElement = project.getElementByID(modelElementId.getId());
 
-            if (sourceElement instanceof Pin){
-                var sourcePin = (Pin)sourceElement;
-                pin.setName(sourcePin.getName());
-                // probably do it differently
-                //pin.setType(sourcePin.getType());
+            if (sourceElement instanceof Pin) {
+
+                var sourcePin = (Pin) sourceElement;
+
+                switch (cloneMethod) {
+
+                    case NAME:
+                        pin.setName(sourcePin.getName());
+                        break;
+
+                    case TYPE:
+                        pin.setType(sourcePin.getType());
+                        break;
+
+                    case NAME_AND_TYPE:
+                        pin.setName(sourcePin.getName());
+                        pin.setType(sourcePin.getType());
+                        break;
+
+                }
+
             }
         }
     }
