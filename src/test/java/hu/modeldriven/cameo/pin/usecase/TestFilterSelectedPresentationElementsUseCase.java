@@ -21,7 +21,7 @@ import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 
 @ExtendWith(MockitoExtension.class)
-public class TestFilterSelectedPresentationElementsUseCase {
+class TestFilterSelectedPresentationElementsUseCase {
 
     @Spy
     EventBus eventBus;
@@ -33,7 +33,7 @@ public class TestFilterSelectedPresentationElementsUseCase {
     MagicDrawMock magicDrawMock;
 
     @Test
-    public void testEmptySelection() {
+    void testEmptySelection() {
         var event = new PresentationElementsSelectedEvent();
         eventBus.publish(event);
 
@@ -41,7 +41,7 @@ public class TestFilterSelectedPresentationElementsUseCase {
     }
 
     @Test
-    public void testSelectionWithSingleAction() {
+    void testSelectionWithSingleAction() {
         var actionRepresentation = magicDrawMock.createElement(OpaqueAction.class);
 
         var event = new PresentationElementsSelectedEvent(actionRepresentation.getValue0());
@@ -51,7 +51,7 @@ public class TestFilterSelectedPresentationElementsUseCase {
     }
 
     @Test
-    public void testSelectionWithSinglePin() {
+    void testSelectionWithSinglePin() {
         var pinRepresentation = magicDrawMock.createElement(Pin.class);
 
         var event = new PresentationElementsSelectedEvent(pinRepresentation.getValue0());
@@ -65,7 +65,7 @@ public class TestFilterSelectedPresentationElementsUseCase {
     }
 
     @Test
-    public void testSelectionWithBothPinAndAction() {
+    void testSelectionWithBothPinAndAction() {
         var pinRepresentation = magicDrawMock.createElement(Pin.class);
         var actionRepresentation = magicDrawMock.createElement(OpaqueAction.class);
 
@@ -82,7 +82,7 @@ public class TestFilterSelectedPresentationElementsUseCase {
 
 
     @Test
-    public void testSelectionWithMultiplePins() {
+    void testSelectionWithMultiplePins() {
         var pinRepresentation1 = magicDrawMock.createElement(Pin.class);
         var pinRepresentation2 = magicDrawMock.createElement(Pin.class);
 

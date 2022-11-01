@@ -2,6 +2,7 @@ package hu.modeldriven.cameo.pin.usecase;
 
 import com.nomagic.uml2.ext.magicdraw.actions.mdbasicactions.Pin;
 import hu.modeldriven.cameo.pin.event.CloseDialogRequestedEvent;
+import hu.modeldriven.cameo.pin.event.ExceptionOccuredEvent;
 import hu.modeldriven.cameo.pin.event.PinMultiplicitySetEvent;
 import hu.modeldriven.cameo.pin.event.PinNameAndTypeClonedEvent;
 import hu.modeldriven.cameo.pin.model.ModelElementId;
@@ -51,6 +52,7 @@ public class CloneNameAndTypeFromPinUseCase implements UseCase {
 
         } catch (Exception e) {
             magicDraw.cancelSession();
+            eventBus.publish(new ExceptionOccuredEvent(e));
         }
     }
 

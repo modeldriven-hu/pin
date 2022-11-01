@@ -1,7 +1,7 @@
 package hu.modeldriven.cameo.pin.model;
 
 import hu.modeldriven.cameo.pin.model.multiplicity.*;
-import hu.modeldriven.core.magicdraw.MagicDrawElementFactory;
+import hu.modeldriven.core.magicdraw.MagicDraw;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
@@ -14,7 +14,7 @@ public class TestDefaultMultiplicityModels {
 
     @Test
     public void testAllItemsReturned() {
-        var magicDrawElementFactory = Mockito.mock(MagicDrawElementFactory.class);
+        var magicDrawElementFactory = Mockito.mock(MagicDraw.class);
         var defaultMultiplicityModels = new DefaultMultiplicityModels(magicDrawElementFactory);
         var list = defaultMultiplicityModels.asList();
         assertEquals(6, list.size());

@@ -6,7 +6,7 @@ import hu.modeldriven.cameo.pin.model.*;
 import hu.modeldriven.cameo.pin.model.clone.CloneSourceImpl;
 import hu.modeldriven.cameo.pin.model.multiplicity.DefaultMultiplicityModels;
 import hu.modeldriven.core.eventbus.EventBus;
-import hu.modeldriven.core.magicdraw.MagicDrawElementFactory;
+import hu.modeldriven.core.magicdraw.MagicDraw;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -19,17 +19,17 @@ import java.util.stream.IntStream;
 public class PinPanel extends BasePinPanel {
 
     private final EventBus eventBus;
-    private final MagicDrawElementFactory factory;
+    private final MagicDraw magicDraw;
 
-    public PinPanel(EventBus eventBus, MagicDrawElementFactory factory) {
+    public PinPanel(EventBus eventBus, MagicDraw magicDraw) {
         super();
         this.eventBus = eventBus;
-        this.factory = factory;
+        this.magicDraw = magicDraw;
         initUIComponents();
     }
 
     private void initUIComponents() {
-        var multiplicityModels = new DefaultMultiplicityModels(factory);
+        var multiplicityModels = new DefaultMultiplicityModels(magicDraw);
 
         this.multiplicityComboBox.setModel(new DefaultComboBoxModel<>(multiplicityModels.asVector()));
         this.multiplicityComboBox.setSelectedIndex(0);

@@ -10,7 +10,6 @@ import hu.modeldriven.cameo.pin.usecase.FilterSelectedPresentationElementsUseCas
 import hu.modeldriven.cameo.pin.usecase.SetMultiplicityOnPinsUseCase;
 import hu.modeldriven.core.eventbus.EventBus;
 import hu.modeldriven.core.magicdraw.MagicDraw;
-import hu.modeldriven.core.magicdraw.MagicDrawElementFactory;
 import hu.modeldriven.core.usecase.UseCase;
 
 import java.awt.event.ActionEvent;
@@ -25,13 +24,14 @@ public class PinAction extends DefaultDiagramAction {
         super(id, name, null, null);
 
         this.eventBus = new EventBus();
+
+        var magicDraw = new MagicDraw();
+
         var dialog = new PinDialog(
                 MDDialogParentProvider.getProvider().getDialogParent(true),
                 eventBus,
-                new MagicDrawElementFactory()
+                magicDraw
         );
-
-        var magicDraw = new MagicDraw();
 
         this.initialUsecases = new UseCase[]{
                 new FilterSelectedPresentationElementsUseCase(eventBus),

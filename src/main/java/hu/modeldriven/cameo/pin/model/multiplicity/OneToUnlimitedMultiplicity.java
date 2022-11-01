@@ -1,12 +1,12 @@
 package hu.modeldriven.cameo.pin.model.multiplicity;
 
 import hu.modeldriven.cameo.pin.model.Multiplicity;
-import hu.modeldriven.core.magicdraw.MagicDrawElementFactory;
+import hu.modeldriven.core.magicdraw.MagicDraw;
 
 public class OneToUnlimitedMultiplicity extends Multiplicity {
 
-    public OneToUnlimitedMultiplicity(MagicDrawElementFactory factory) {
-        super(() -> factory.createLiteralInteger(1), () -> factory.createLiteralUnlimitedNatural(-1));
+    public OneToUnlimitedMultiplicity(MagicDraw magicDraw) {
+        super(() -> magicDraw.createLiteralInteger(1), () -> magicDraw.createLiteralUnlimitedNatural(-1));
     }
 
     @Override

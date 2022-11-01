@@ -3,7 +3,7 @@ package hu.modeldriven.cameo.pin.ui;
 import hu.modeldriven.cameo.pin.model.SourcePin;
 import hu.modeldriven.cameo.pin.usecase.CloseDialogUseCase;
 import hu.modeldriven.core.eventbus.EventBus;
-import hu.modeldriven.core.magicdraw.MagicDrawElementFactory;
+import hu.modeldriven.core.magicdraw.MagicDraw;
 import hu.modeldriven.core.usecase.UseCase;
 
 import javax.swing.*;
@@ -15,12 +15,12 @@ public class PinDialog extends JDialog {
     private final PinPanel panel;
     private final UseCase closeDialogUseCase;
 
-    public PinDialog(Frame parent, EventBus eventBus, MagicDrawElementFactory factory) {
+    public PinDialog(Frame parent, EventBus eventBus, MagicDraw magicDraw) {
         super(parent, "Pin action", false);
 
         this.closeDialogUseCase = new CloseDialogUseCase(eventBus, this);
 
-        this.panel = new PinPanel(eventBus, factory);
+        this.panel = new PinPanel(eventBus, magicDraw);
 
         this.setContentPane(panel);
         this.pack();

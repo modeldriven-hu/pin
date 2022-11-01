@@ -15,7 +15,7 @@ import javax.swing.*;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
-public class TestCloseDialogUseCase {
+class TestCloseDialogUseCase {
 
     @Spy
     EventBus eventBus;
@@ -27,13 +27,13 @@ public class TestCloseDialogUseCase {
     CloseDialogUseCase useCase;
 
     @Test
-    public void testDialogClosedOnCloseDialogRequestedEvent() {
+    void testDialogClosedOnCloseDialogRequestedEvent() {
         eventBus.publish(new CloseDialogRequestedEvent());
         verify(dialog).setVisible(false);
     }
 
     @Test
-    public void testDialogClosedOnPinNameAndTypeClonedEvent() {
+    void testDialogClosedOnPinNameAndTypeClonedEvent() {
         eventBus.publish(new PinNameAndTypeClonedEvent());
         verify(dialog).setVisible(false);
     }

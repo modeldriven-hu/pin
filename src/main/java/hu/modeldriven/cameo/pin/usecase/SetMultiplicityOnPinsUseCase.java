@@ -3,6 +3,7 @@ package hu.modeldriven.cameo.pin.usecase;
 import com.nomagic.uml2.ext.magicdraw.classes.mdkernel.MultiplicityElement;
 import hu.modeldriven.cameo.pin.event.ApplyChangeRequestedEvent;
 import hu.modeldriven.cameo.pin.event.CloseDialogRequestedEvent;
+import hu.modeldriven.cameo.pin.event.ExceptionOccuredEvent;
 import hu.modeldriven.cameo.pin.event.PinMultiplicitySetEvent;
 import hu.modeldriven.cameo.pin.model.ModelElementId;
 import hu.modeldriven.cameo.pin.ui.PinPanel;
@@ -51,6 +52,7 @@ public class SetMultiplicityOnPinsUseCase implements UseCase {
 
         } catch (Exception e) {
             magicDraw.cancelSession();
+            eventBus.publish(new ExceptionOccuredEvent(e));
         }
     }
 }
