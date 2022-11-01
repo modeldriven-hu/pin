@@ -14,7 +14,7 @@ public class PresentationElementsSelectedEvent implements Event {
         this.presentationElements = presentationElements;
     }
 
-    public PresentationElementsSelectedEvent(PresentationElement ... presentationElements){
+    public PresentationElementsSelectedEvent(PresentationElement... presentationElements) {
         this.presentationElements = Arrays.asList(presentationElements);
     }
 
