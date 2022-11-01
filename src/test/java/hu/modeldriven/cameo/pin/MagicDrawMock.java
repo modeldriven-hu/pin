@@ -5,14 +5,15 @@ import com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Element;
 import org.javatuples.Pair;
 import org.mockito.Mockito;
 
+import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.when;
 
 public class MagicDrawMock {
 
-    public Pair<PresentationElement, Element> createElement(Class<? extends Element> clazz) {
+    public <T extends Element> Pair<PresentationElement, T> createElement(Class<T> clazz) {
         var presentationElement = Mockito.mock(PresentationElement.class);
         var modelElement = Mockito.mock(clazz);
-        when(presentationElement.getElement()).thenReturn(modelElement);
+        lenient().when(presentationElement.getElement()).thenReturn(modelElement);
         return new Pair<>(presentationElement, modelElement);
     }
 
