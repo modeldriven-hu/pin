@@ -17,11 +17,13 @@ public class TestDefaultMultiplicityModels {
         var magicDrawElementFactory = Mockito.mock(MagicDrawElementFactory.class);
         var defaultMultiplicityModels = new DefaultMultiplicityModels(magicDrawElementFactory);
         var list = defaultMultiplicityModels.asList();
-        assertEquals(4, list.size());
-        assertEquals(1, list.stream().filter(o -> o instanceof ZeroToOneMultiplicity).count());
+        assertEquals(6, list.size());
         assertEquals(1, list.stream().filter(o -> o instanceof OneToOneMultiplicity).count());
-        assertEquals(1, list.stream().filter(o -> o instanceof ZeroToUnlimitedMultiplicity).count());
         assertEquals(1, list.stream().filter(o -> o instanceof OneToUnlimitedMultiplicity).count());
+        assertEquals(1, list.stream().filter(o -> o instanceof UndefinedMultiplicity).count());
+        assertEquals(1, list.stream().filter(o -> o instanceof UnlimitedMultiplicity).count());
+        assertEquals(1, list.stream().filter(o -> o instanceof ZeroToOneMultiplicity).count());
+        assertEquals(1, list.stream().filter(o -> o instanceof ZeroToUnlimitedMultiplicity).count());
     }
 
 }

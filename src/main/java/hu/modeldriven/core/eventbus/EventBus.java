@@ -1,5 +1,7 @@
 package hu.modeldriven.core.eventbus;
 
+import hu.modeldriven.cameo.pin.event.PresentationElementsSelectedEvent;
+
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
