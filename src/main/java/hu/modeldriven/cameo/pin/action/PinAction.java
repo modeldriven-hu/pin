@@ -8,13 +8,15 @@ import hu.modeldriven.cameo.pin.usecase.*;
 import hu.modeldriven.core.eventbus.EventBus;
 import hu.modeldriven.core.magicdraw.MagicDraw;
 import hu.modeldriven.core.usecase.UseCase;
+import hu.modeldriven.core.usecase.UseCaseRepository;
 
 import java.awt.event.ActionEvent;
 
 public class PinAction extends DefaultDiagramAction {
 
     private final transient EventBus eventBus;
-    private final transient UseCase[] initialUsecases;
+    @UseCaseRepository
+    private final UseCase[] useCaseRepository;
 
     public PinAction(String id, String name) {
         super(id, name, null, null);
@@ -29,7 +31,7 @@ public class PinAction extends DefaultDiagramAction {
                 magicDraw
         );
 
-        this.initialUsecases = new UseCase[]{
+        this.useCaseRepository = new UseCase[]{
                 new FilterSelectedPresentationElementsUseCase(eventBus),
                 new DisplayDialogUseCase(eventBus, dialog),
                 new SetMultiplicityOnPinsUseCase(eventBus, magicDraw),
