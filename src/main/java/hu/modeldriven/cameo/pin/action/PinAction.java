@@ -16,7 +16,7 @@ public class PinAction extends DefaultDiagramAction {
 
     private final transient EventBus eventBus;
     @UseCaseRepository
-    private final UseCase[] useCaseRepository;
+    private final transient UseCase[] useCaseRepository;
 
     public PinAction(String id, String name) {
         super(id, name, null, null);
