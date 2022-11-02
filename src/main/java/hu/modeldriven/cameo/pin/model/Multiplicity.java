@@ -9,7 +9,7 @@ public abstract class Multiplicity {
     private final Supplier<ValueSpecification> lowerValue;
     private final Supplier<ValueSpecification> upperValue;
 
-    public Multiplicity(Supplier<ValueSpecification> lowerValue, Supplier<ValueSpecification> upperValue) {
+    protected Multiplicity(Supplier<ValueSpecification> lowerValue, Supplier<ValueSpecification> upperValue) {
         this.lowerValue = lowerValue;
         this.upperValue = upperValue;
     }

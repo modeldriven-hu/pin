@@ -104,7 +104,7 @@ class TestSetMultiplicityOnPinsUseCase {
         verify(pin, never()).setUpperValue(any());
     }
 
-    void verifyBothValuesSet(Multiplicity multiplicity){
+    void verifyBothValuesSet(Multiplicity multiplicity) {
         var result = testMultiplicity(multiplicity);
         assertEquals(result.getValue0(), lowerValueCaptor.getValue());
         assertEquals(result.getValue1(), upperValueCaptor.getValue());

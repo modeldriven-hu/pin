@@ -30,7 +30,7 @@ public class GenerateDialogCloseRequestOnAllActionsArrivedUseCase implements Use
     }
 
     private void checkAllEventsArrived() {
-        if (pinMultiplicitySetEventArrived == true && pinNameAndTypeClonedEventArrived == true) {
+        if (pinMultiplicitySetEventArrived && pinNameAndTypeClonedEventArrived) {
             this.pinMultiplicitySetEventArrived = false;
             this.pinNameAndTypeClonedEventArrived = false;
             eventBus.publish(new CloseDialogRequestedEvent());

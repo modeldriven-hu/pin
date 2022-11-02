@@ -13,9 +13,8 @@ import java.awt.event.ActionEvent;
 
 public class PinAction extends DefaultDiagramAction {
 
-    private final EventBus eventBus;
-
-    private final UseCase[] initialUsecases;
+    private final transient EventBus eventBus;
+    private final transient UseCase[] initialUsecases;
 
     public PinAction(String id, String name) {
         super(id, name, null, null);
@@ -35,7 +34,8 @@ public class PinAction extends DefaultDiagramAction {
                 new DisplayDialogUseCase(eventBus, dialog),
                 new SetMultiplicityOnPinsUseCase(eventBus, magicDraw),
                 new CloneNameAndTypeFromPinUseCase(eventBus, magicDraw),
-                new GenerateDialogCloseRequestOnAllActionsArrivedUseCase(eventBus)
+                new GenerateDialogCloseRequestOnAllActionsArrivedUseCase(eventBus),
+                new CloseDialogUseCase(eventBus, dialog)
         };
     }
 
@@ -43,4 +43,5 @@ public class PinAction extends DefaultDiagramAction {
     public void actionPerformed(ActionEvent actionEvent) {
         this.eventBus.publish(new PresentationElementsSelectedEvent(getSelected()));
     }
+
 }

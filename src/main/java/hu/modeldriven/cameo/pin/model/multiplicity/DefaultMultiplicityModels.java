@@ -5,7 +5,6 @@ import hu.modeldriven.core.magicdraw.MagicDraw;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
 
 public class DefaultMultiplicityModels {
 
@@ -26,10 +25,6 @@ public class DefaultMultiplicityModels {
         list.add(new UnlimitedMultiplicity(magicDraw));
 
         return list;
-    }
-
-    public Vector<Multiplicity> asVector() {
-        return new Vector<>(asList());
     }
 
 }

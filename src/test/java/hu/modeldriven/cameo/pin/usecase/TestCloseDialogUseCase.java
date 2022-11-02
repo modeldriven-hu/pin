@@ -1,7 +1,6 @@
 package hu.modeldriven.cameo.pin.usecase;
 
 import hu.modeldriven.cameo.pin.event.CloseDialogRequestedEvent;
-import hu.modeldriven.cameo.pin.event.PinNameAndTypeClonedEvent;
 import hu.modeldriven.core.eventbus.EventBus;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

@@ -13,13 +13,14 @@ import javax.swing.event.ChangeEvent;
 import java.awt.event.ActionEvent;
 import java.util.List;
 import java.util.Set;
+import java.util.Vector;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class PinPanel extends BasePinPanel {
 
-    private final EventBus eventBus;
-    private final MagicDraw magicDraw;
+    private final transient EventBus eventBus;
+    private final transient MagicDraw magicDraw;
 
     public PinPanel(EventBus eventBus, MagicDraw magicDraw) {
         super();
@@ -36,7 +37,7 @@ public class PinPanel extends BasePinPanel {
     private void initUIComponents() {
         var multiplicityModels = new DefaultMultiplicityModels(magicDraw);
 
-        this.multiplicityComboBox.setModel(new DefaultComboBoxModel<>(multiplicityModels.asVector()));
+        this.multiplicityComboBox.setModel(new DefaultComboBoxModel<>(new Vector<>(multiplicityModels.asList())));
         this.multiplicityComboBox.setSelectedIndex(0);
 
         this.cloneMethodsComboBox.setModel(new DefaultComboBoxModel<>(CloneMethod.values()));

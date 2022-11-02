@@ -10,10 +10,10 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(MockitoExtension.class)
-public class TestDefaultMultiplicityModels {
+class TestDefaultMultiplicityModels {
 
     @Test
-    public void testAllItemsReturned() {
+    void testAllItemsReturned() {
         var magicDrawElementFactory = Mockito.mock(MagicDraw.class);
         var defaultMultiplicityModels = new DefaultMultiplicityModels(magicDrawElementFactory);
         var list = defaultMultiplicityModels.asList();
