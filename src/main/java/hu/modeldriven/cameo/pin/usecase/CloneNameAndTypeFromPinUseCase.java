@@ -1,9 +1,11 @@
 package hu.modeldriven.cameo.pin.usecase;
 
 import com.nomagic.uml2.ext.magicdraw.actions.mdbasicactions.Pin;
-import hu.modeldriven.cameo.pin.event.*;
+import hu.modeldriven.cameo.pin.event.ApplyChangeRequestedEvent;
+import hu.modeldriven.cameo.pin.event.CloseDialogRequestedEvent;
+import hu.modeldriven.cameo.pin.event.ExceptionOccuredEvent;
+import hu.modeldriven.cameo.pin.event.PinNameAndTypeClonedEvent;
 import hu.modeldriven.cameo.pin.model.ModelElementId;
-import hu.modeldriven.cameo.pin.ui.PinPanel;
 import hu.modeldriven.core.eventbus.EventBus;
 import hu.modeldriven.core.magicdraw.MagicDraw;
 import hu.modeldriven.core.usecase.UseCase;

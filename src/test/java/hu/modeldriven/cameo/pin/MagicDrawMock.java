@@ -6,7 +6,6 @@ import org.javatuples.Pair;
 import org.mockito.Mockito;
 
 import static org.mockito.Mockito.lenient;
-import static org.mockito.Mockito.when;
 
 public class MagicDrawMock {
 

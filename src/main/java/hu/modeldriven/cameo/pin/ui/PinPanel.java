@@ -85,6 +85,7 @@ public class PinPanel extends BasePinPanel {
     private Multiplicity getSelectedMultiplicity() {
         return (Multiplicity) this.multiplicityComboBox.getModel().getSelectedItem();
     }
+
     private CloneSource getSelectedCloneSource() {
 
         if (clonePropertiesCheckBox.isSelected() && sourcePinComboBox.getSelectedItem() != null) {
