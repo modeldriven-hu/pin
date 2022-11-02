@@ -9,15 +9,14 @@ import hu.modeldriven.cameo.pin.event.CloseDialogRequestedEvent;
 import hu.modeldriven.cameo.pin.event.PinMultiplicitySetEvent;
 import hu.modeldriven.cameo.pin.model.CloneSource;
 import hu.modeldriven.cameo.pin.model.ModelElementId;
-import hu.modeldriven.cameo.pin.model.multiplicity.OneToOneMultiplicity;
+import hu.modeldriven.cameo.pin.model.Multiplicity;
+import hu.modeldriven.cameo.pin.model.multiplicity.*;
 import hu.modeldriven.core.eventbus.EventBus;
 import hu.modeldriven.core.magicdraw.MagicDraw;
+import org.javatuples.Pair;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.ArgumentCaptor;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Spy;
+import org.mockito.*;
 import org.mockito.internal.util.collections.Sets;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -39,6 +38,12 @@ class TestSetMultiplicityOnPinsUseCase {
     @Mock
     MagicDraw magicDraw;
 
+    @Captor
+    ArgumentCaptor<ValueSpecification> lowerValueCaptor;
+
+    @Captor
+    ArgumentCaptor<ValueSpecification> upperValueCaptor;
+
     @Test
     void testNoActiveProjectGeneratesCloseDialogRequestedEvent() {
         when(magicDraw.existsActiveProject()).thenReturn(false);
@@ -47,25 +52,47 @@ class TestSetMultiplicityOnPinsUseCase {
     }
 
     @Test
-    void testOneToOneRuleAppliedToSinglePin() {
+    void testOneToOneMultiplicity() {
+        verifyBothValuesSet(new OneToOneMultiplicity(magicDraw));
+    }
 
-        // given we have a selected pin and the multiplicity is set to 1..1
+    @Test
+    void testOneToUnlimitedMultiplicity() {
+        verifyBothValuesSet(new OneToUnlimitedMultiplicity(magicDraw));
+    }
+
+    @Test
+    void testZeroToOneMultiplicity() {
+        verifyBothValuesSet(new ZeroToOneMultiplicity(magicDraw));
+    }
+
+    @Test
+    void testZeroToUnlimitedMultiplicity() {
+        verifyBothValuesSet(new ZeroToUnlimitedMultiplicity(magicDraw));
+    }
+
+    @Test
+    void testUnlimitedMultiplicity() {
+        var result = testMultiplicity(new UnlimitedMultiplicity(magicDraw));
+        assertEquals(result.getValue1(), lowerValueCaptor.getValue());
+        assertEquals(result.getValue1(), upperValueCaptor.getValue());
+    }
+
+    @Test
+    void testUndefinedMultiplicity() {
+
+        // Some code duplication, to be refactored later
 
         var pin = mock(Pin.class);
 
-        var literalInteger = mock(LiteralInteger.class);
-        var literalUnlimitedNatural = mock(LiteralUnlimitedNatural.class);
-
         when(magicDraw.existsActiveProject()).thenReturn(true);
         when(magicDraw.getElementByID(any())).thenReturn(pin);
-        when(magicDraw.createLiteralInteger(anyInt())).thenReturn(literalInteger);
-        when(magicDraw.createLiteralUnlimitedNatural(anyInt())).thenReturn(literalUnlimitedNatural);
 
         // when the user press apply
 
         eventBus.publish(new ApplyChangeRequestedEvent(
                 Sets.newSet(new ModelElementId(UUID.randomUUID().toString())),
-                new OneToOneMultiplicity(magicDraw),
+                new UndefinedMultiplicity(),
                 new CloneSource.Default()));
 
         // then an event is created
@@ -73,14 +100,46 @@ class TestSetMultiplicityOnPinsUseCase {
 
         verify(eventBus).publish(any(PinMultiplicitySetEvent.class));
 
-        var lowerValueCaptor = ArgumentCaptor.forClass(ValueSpecification.class);
-        verify(pin).setLowerValue(lowerValueCaptor.capture());
-        assertEquals(literalInteger, lowerValueCaptor.getValue());
-
-        var upperValueCaptor = ArgumentCaptor.forClass(ValueSpecification.class);
-        verify(pin).setUpperValue(upperValueCaptor.capture());
-        assertEquals(literalUnlimitedNatural, upperValueCaptor.getValue());
+        verify(pin, never()).setLowerValue(any());
+        verify(pin, never()).setUpperValue(any());
     }
 
+    void verifyBothValuesSet(Multiplicity multiplicity){
+        var result = testMultiplicity(multiplicity);
+        assertEquals(result.getValue0(), lowerValueCaptor.getValue());
+        assertEquals(result.getValue1(), upperValueCaptor.getValue());
+    }
+
+    Pair<LiteralInteger, LiteralUnlimitedNatural> testMultiplicity(Multiplicity multiplicity) {
+        // given we have a selected pin and the multiplicity is set
+
+        var literalInteger = mock(LiteralInteger.class);
+        lenient().when(magicDraw.createLiteralInteger(anyInt())).thenReturn(literalInteger);
+
+        var literalUnlimitedNatural = mock(LiteralUnlimitedNatural.class);
+        lenient().when(magicDraw.createLiteralUnlimitedNatural(anyInt())).thenReturn(literalUnlimitedNatural);
+
+        var pin = mock(Pin.class);
+
+        when(magicDraw.existsActiveProject()).thenReturn(true);
+        when(magicDraw.getElementByID(any())).thenReturn(pin);
+
+        // when the user press apply
+
+        eventBus.publish(new ApplyChangeRequestedEvent(
+                Sets.newSet(new ModelElementId(UUID.randomUUID().toString())),
+                multiplicity,
+                new CloneSource.Default()));
+
+        // then an event is created
+        // indicating that the pin's lower and upper value was set to a corresponding value
+
+        verify(eventBus).publish(any(PinMultiplicitySetEvent.class));
+
+        verify(pin).setLowerValue(lowerValueCaptor.capture());
+        verify(pin).setUpperValue(upperValueCaptor.capture());
+
+        return new Pair<>(literalInteger, literalUnlimitedNatural);
+    }
 
 }
