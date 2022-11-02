@@ -32,11 +32,4 @@ class TestCloseDialogUseCase {
         verify(dialog).setVisible(false);
     }
 
-    @Test
-    void testDialogClosedOnPinNameAndTypeClonedEvent() {
-        eventBus.publish(new PinNameAndTypeClonedEvent());
-        verify(dialog).setVisible(false);
-    }
-
-
 }
