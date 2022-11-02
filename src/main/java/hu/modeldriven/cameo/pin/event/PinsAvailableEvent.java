@@ -5,11 +5,11 @@ import hu.modeldriven.core.eventbus.Event;
 
 import java.util.List;
 
-public class PinsSelectedEvent implements Event {
+public class PinsAvailableEvent implements Event {
 
     public List<Pin> pins;
 
-    public PinsSelectedEvent(List<Pin> pins) {
+    public PinsAvailableEvent(List<Pin> pins) {
         this.pins = pins;
     }
 

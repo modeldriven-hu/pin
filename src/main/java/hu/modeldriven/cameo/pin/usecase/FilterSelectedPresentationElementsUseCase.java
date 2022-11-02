@@ -2,7 +2,7 @@ package hu.modeldriven.cameo.pin.usecase;
 
 import com.nomagic.magicdraw.uml.symbols.PresentationElement;
 import com.nomagic.uml2.ext.magicdraw.actions.mdbasicactions.Pin;
-import hu.modeldriven.cameo.pin.event.PinsSelectedEvent;
+import hu.modeldriven.cameo.pin.event.PinsAvailableEvent;
 import hu.modeldriven.cameo.pin.event.PresentationElementsSelectedEvent;
 import hu.modeldriven.core.eventbus.EventBus;
 import hu.modeldriven.core.usecase.UseCase;
@@ -26,7 +26,7 @@ public class FilterSelectedPresentationElementsUseCase implements UseCase {
                 .collect(Collectors.toList());
 
         if (!selectedPins.isEmpty()) {
-            this.eventBus.publish(new PinsSelectedEvent(selectedPins));
+            this.eventBus.publish(new PinsAvailableEvent(selectedPins));
         }
     }
 

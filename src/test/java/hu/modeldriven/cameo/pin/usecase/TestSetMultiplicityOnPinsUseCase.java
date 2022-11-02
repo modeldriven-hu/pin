@@ -7,9 +7,9 @@ import com.nomagic.uml2.ext.magicdraw.classes.mdkernel.ValueSpecification;
 import hu.modeldriven.cameo.pin.event.ApplyChangeRequestedEvent;
 import hu.modeldriven.cameo.pin.event.CloseDialogRequestedEvent;
 import hu.modeldriven.cameo.pin.event.PinMultiplicitySetEvent;
+import hu.modeldriven.cameo.pin.model.CloneSource;
 import hu.modeldriven.cameo.pin.model.ModelElementId;
 import hu.modeldriven.cameo.pin.model.multiplicity.OneToOneMultiplicity;
-import hu.modeldriven.cameo.pin.ui.PinPanel;
 import hu.modeldriven.core.eventbus.EventBus;
 import hu.modeldriven.core.magicdraw.MagicDraw;
 import org.junit.jupiter.api.Test;
@@ -39,13 +39,10 @@ class TestSetMultiplicityOnPinsUseCase {
     @Mock
     MagicDraw magicDraw;
 
-    @Mock
-    PinPanel pinPanel;
-
     @Test
     void testNoActiveProjectGeneratesCloseDialogRequestedEvent() {
         when(magicDraw.existsActiveProject()).thenReturn(false);
-        eventBus.publish(new ApplyChangeRequestedEvent());
+        eventBus.publish(new ApplyChangeRequestedEvent(null, null, null));
         verify(eventBus).publish(any(CloseDialogRequestedEvent.class));
     }
 
@@ -64,12 +61,12 @@ class TestSetMultiplicityOnPinsUseCase {
         when(magicDraw.createLiteralInteger(anyInt())).thenReturn(literalInteger);
         when(magicDraw.createLiteralUnlimitedNatural(anyInt())).thenReturn(literalUnlimitedNatural);
 
-        when(pinPanel.getSelectedMultiplicity()).thenReturn(new OneToOneMultiplicity(magicDraw));
-        when(pinPanel.getModelElementIds()).thenReturn(Sets.newSet(new ModelElementId(UUID.randomUUID().toString())));
-
         // when the user press apply
 
-        eventBus.publish(new ApplyChangeRequestedEvent());
+        eventBus.publish(new ApplyChangeRequestedEvent(
+                Sets.newSet(new ModelElementId(UUID.randomUUID().toString())),
+                new OneToOneMultiplicity(magicDraw),
+                new CloneSource.Default()));
 
         // then an event is created
         // indicating that the pin's lower and upper value was set to a corresponding value

@@ -3,7 +3,7 @@ package hu.modeldriven.cameo.pin.usecase;
 import com.nomagic.uml2.ext.magicdraw.actions.mdbasicactions.OpaqueAction;
 import com.nomagic.uml2.ext.magicdraw.actions.mdbasicactions.Pin;
 import hu.modeldriven.cameo.pin.MagicDrawMock;
-import hu.modeldriven.cameo.pin.event.PinsSelectedEvent;
+import hu.modeldriven.cameo.pin.event.PinsAvailableEvent;
 import hu.modeldriven.cameo.pin.event.PresentationElementsSelectedEvent;
 import hu.modeldriven.core.eventbus.EventBus;
 import org.junit.jupiter.api.Test;
@@ -37,7 +37,7 @@ class TestFilterSelectedPresentationElementsUseCase {
         var event = new PresentationElementsSelectedEvent();
         eventBus.publish(event);
 
-        Mockito.verify(eventBus, never()).publish(any(PinsSelectedEvent.class));
+        Mockito.verify(eventBus, never()).publish(any(PinsAvailableEvent.class));
     }
 
     @Test
@@ -47,7 +47,7 @@ class TestFilterSelectedPresentationElementsUseCase {
         var event = new PresentationElementsSelectedEvent(actionRepresentation.getValue0());
         eventBus.publish(event);
 
-        Mockito.verify(eventBus, never()).publish(any(PinsSelectedEvent.class));
+        Mockito.verify(eventBus, never()).publish(any(PinsAvailableEvent.class));
     }
 
     @Test
@@ -57,7 +57,7 @@ class TestFilterSelectedPresentationElementsUseCase {
         var event = new PresentationElementsSelectedEvent(pinRepresentation.getValue0());
         eventBus.publish(event);
 
-        var argumentCaptor = ArgumentCaptor.forClass(PinsSelectedEvent.class);
+        var argumentCaptor = ArgumentCaptor.forClass(PinsAvailableEvent.class);
         Mockito.verify(eventBus, times(2)).publish(argumentCaptor.capture());
 
         var pins = argumentCaptor.getValue().getPins();
@@ -72,7 +72,7 @@ class TestFilterSelectedPresentationElementsUseCase {
         var event = new PresentationElementsSelectedEvent(pinRepresentation.getValue0(), actionRepresentation.getValue0());
         eventBus.publish(event);
 
-        var argumentCaptor = ArgumentCaptor.forClass(PinsSelectedEvent.class);
+        var argumentCaptor = ArgumentCaptor.forClass(PinsAvailableEvent.class);
         Mockito.verify(eventBus, times(2)).publish(argumentCaptor.capture());
 
         var pins = argumentCaptor.getValue().getPins();
@@ -94,7 +94,7 @@ class TestFilterSelectedPresentationElementsUseCase {
 
         eventBus.publish(event);
 
-        var argumentCaptor = ArgumentCaptor.forClass(PinsSelectedEvent.class);
+        var argumentCaptor = ArgumentCaptor.forClass(PinsAvailableEvent.class);
         Mockito.verify(eventBus, times(2)).publish(argumentCaptor.capture());
 
         var pins = argumentCaptor.getValue().getPins();

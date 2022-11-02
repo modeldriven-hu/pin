@@ -1,6 +1,6 @@
 package hu.modeldriven.cameo.pin.usecase;
 
-import hu.modeldriven.cameo.pin.event.PinsSelectedEvent;
+import hu.modeldriven.cameo.pin.event.PinsAvailableEvent;
 import hu.modeldriven.cameo.pin.model.ModelElementId;
 import hu.modeldriven.cameo.pin.model.SourcePin;
 import hu.modeldriven.cameo.pin.ui.PinDialog;
@@ -15,10 +15,10 @@ public class DisplayDialogUseCase implements UseCase {
 
     public DisplayDialogUseCase(EventBus eventBus, PinDialog dialog) {
         this.dialog = dialog;
-        eventBus.subscribe(PinsSelectedEvent.class, this::onPinsSelected);
+        eventBus.subscribe(PinsAvailableEvent.class, this::onPinsSelected);
     }
 
-    private void onPinsSelected(PinsSelectedEvent event) {
+    private void onPinsSelected(PinsAvailableEvent event) {
         var selectedPins = event.getPins()
                 .stream()
                 .map(pin ->

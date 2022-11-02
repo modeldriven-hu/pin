@@ -28,6 +28,11 @@ public class PinPanel extends BasePinPanel {
         initUIComponents();
     }
 
+    public void setSelectedPins(List<SourcePin> pins) {
+        this.sourcePinComboBox.setModel(new DefaultComboBoxModel<>(pins.toArray(new SourcePin[0])));
+        this.sourcePinComboBox.setSelectedIndex(0);
+    }
+
     private void initUIComponents() {
         var multiplicityModels = new DefaultMultiplicityModels(magicDraw);
 
@@ -56,19 +61,18 @@ public class PinPanel extends BasePinPanel {
     }
 
     private void onApplyPressed(ActionEvent e) {
-        this.eventBus.publish(new ApplyChangeRequestedEvent());
+        var modelElementIds = getModelElementIds();
+        var multiplicity = getSelectedMultiplicity();
+        var cloneSource = getSelectedCloneSource();
+
+        this.eventBus.publish(new ApplyChangeRequestedEvent(modelElementIds, multiplicity, cloneSource));
     }
 
     private void onCancelPressed(ActionEvent e) {
         this.eventBus.publish(new CloseDialogRequestedEvent());
     }
 
-    public void setSelectedPins(List<SourcePin> pins) {
-        this.sourcePinComboBox.setModel(new DefaultComboBoxModel<>(pins.toArray(new SourcePin[0])));
-        this.sourcePinComboBox.setSelectedIndex(0);
-    }
-
-    public Set<ModelElementId> getModelElementIds() {
+    private Set<ModelElementId> getModelElementIds() {
         var model = this.sourcePinComboBox.getModel();
 
         return IntStream
@@ -78,12 +82,10 @@ public class PinPanel extends BasePinPanel {
                 .collect(Collectors.toSet());
     }
 
-    public Multiplicity getSelectedMultiplicity() {
+    private Multiplicity getSelectedMultiplicity() {
         return (Multiplicity) this.multiplicityComboBox.getModel().getSelectedItem();
     }
-
-
-    public CloneSource getSelectedCloneSource() {
+    private CloneSource getSelectedCloneSource() {
 
         if (clonePropertiesCheckBox.isSelected() && sourcePinComboBox.getSelectedItem() != null) {
             return new CloneSourceImpl(

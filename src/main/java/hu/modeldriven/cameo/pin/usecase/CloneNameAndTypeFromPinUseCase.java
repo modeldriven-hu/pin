@@ -1,10 +1,7 @@
 package hu.modeldriven.cameo.pin.usecase;
 
 import com.nomagic.uml2.ext.magicdraw.actions.mdbasicactions.Pin;
-import hu.modeldriven.cameo.pin.event.CloseDialogRequestedEvent;
-import hu.modeldriven.cameo.pin.event.ExceptionOccuredEvent;
-import hu.modeldriven.cameo.pin.event.PinMultiplicitySetEvent;
-import hu.modeldriven.cameo.pin.event.PinNameAndTypeClonedEvent;
+import hu.modeldriven.cameo.pin.event.*;
 import hu.modeldriven.cameo.pin.model.ModelElementId;
 import hu.modeldriven.cameo.pin.ui.PinPanel;
 import hu.modeldriven.core.eventbus.EventBus;
@@ -17,16 +14,13 @@ public class CloneNameAndTypeFromPinUseCase implements UseCase {
 
     private final MagicDraw magicDraw;
 
-    private final PinPanel pinPanel;
-
-    public CloneNameAndTypeFromPinUseCase(EventBus eventBus, MagicDraw magicDraw, PinPanel pinPanel) {
+    public CloneNameAndTypeFromPinUseCase(EventBus eventBus, MagicDraw magicDraw) {
         this.eventBus = eventBus;
         this.magicDraw = magicDraw;
-        this.pinPanel = pinPanel;
-        this.eventBus.subscribe(PinMultiplicitySetEvent.class, this::onPinMultiplicitySet);
+        this.eventBus.subscribe(ApplyChangeRequestedEvent.class, this::onApplyChangeRequested);
     }
 
-    private void onPinMultiplicitySet(PinMultiplicitySetEvent event) {
+    private void onApplyChangeRequested(ApplyChangeRequestedEvent event) {
 
         if (!magicDraw.existsActiveProject()) {
             eventBus.publish(new CloseDialogRequestedEvent());
@@ -36,9 +30,9 @@ public class CloneNameAndTypeFromPinUseCase implements UseCase {
         try {
             magicDraw.createSession("Cloning values");
 
-            var cloneSource = pinPanel.getSelectedCloneSource();
+            var cloneSource = event.getCloneSource();
 
-            pinPanel.getModelElementIds()
+            event.getModelElementIds()
                     .stream()
                     .map(ModelElementId::getId)
                     .map(magicDraw::getElementByID)

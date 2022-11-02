@@ -15,7 +15,6 @@ public class CloseDialogUseCase implements UseCase {
     public CloseDialogUseCase(EventBus eventBus, JDialog dialog) {
         this.dialog = dialog;
         eventBus.subscribe(CloseDialogRequestedEvent.class, this::onCloseDialogRequestedEvent);
-        eventBus.subscribe(PinNameAndTypeClonedEvent.class, this::onCloseDialogRequestedEvent);
     }
 
     private void onCloseDialogRequestedEvent(Event t) {

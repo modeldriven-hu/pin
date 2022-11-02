@@ -33,7 +33,4 @@ public class PinDialog extends JDialog {
         this.panel.setSelectedPins(pins);
     }
 
-    public PinPanel getPinPanel() {
-        return (PinPanel) this.getContentPane();
-    }
 }
