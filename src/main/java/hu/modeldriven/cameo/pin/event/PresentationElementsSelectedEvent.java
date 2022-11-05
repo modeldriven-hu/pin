@@ -10,10 +10,6 @@ public class PresentationElementsSelectedEvent implements Event {
 
     private final List<PresentationElement> presentationElements;
 
-    public PresentationElementsSelectedEvent(List<PresentationElement> presentationElements) {
-        this.presentationElements = presentationElements;
-    }
-
     public PresentationElementsSelectedEvent(PresentationElement... presentationElements) {
         this.presentationElements = Arrays.asList(presentationElements);
     }

@@ -89,13 +89,13 @@ public class PinPanel extends BasePinPanel {
 
     private CloneSource getSelectedCloneSource() {
 
-        if (clonePropertiesCheckBox.isSelected() && sourcePinComboBox.getSelectedItem() != null) {
+        if (clonePropertiesCheckBox.isSelected()) {
             return new CloneSourceImpl(
                     ((SourcePin) sourcePinComboBox.getSelectedItem()).getId(),
                     (CloneMethod) (this.cloneMethodsComboBox.getSelectedItem()));
+        } else {
+            return new CloneSource.Default();
         }
-
-        return new CloneSource.Default();
     }
 
 }

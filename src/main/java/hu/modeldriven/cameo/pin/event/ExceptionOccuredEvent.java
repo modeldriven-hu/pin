@@ -10,7 +10,4 @@ public class ExceptionOccuredEvent implements Event {
         this.exception = e;
     }
 
-    public Exception getException() {
-        return exception;
-    }
 }

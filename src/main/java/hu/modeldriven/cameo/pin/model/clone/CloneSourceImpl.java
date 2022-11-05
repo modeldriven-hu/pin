@@ -37,11 +37,9 @@ public class CloneSourceImpl implements CloneSource {
                         break;
 
                     case NAME_AND_TYPE:
+                    default:
                         pin.setName(sourcePin.getName());
                         pin.setType(sourcePin.getType());
-                        break;
-
-                    default:
                         break;
                 }
 

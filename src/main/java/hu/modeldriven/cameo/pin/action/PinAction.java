@@ -2,6 +2,7 @@ package hu.modeldriven.cameo.pin.action;
 
 import com.nomagic.magicdraw.ui.actions.DefaultDiagramAction;
 import com.nomagic.magicdraw.ui.dialogs.MDDialogParentProvider;
+import com.nomagic.magicdraw.uml.symbols.PresentationElement;
 import hu.modeldriven.cameo.pin.event.PresentationElementsSelectedEvent;
 import hu.modeldriven.cameo.pin.ui.PinDialog;
 import hu.modeldriven.cameo.pin.usecase.*;
@@ -43,7 +44,7 @@ public class PinAction extends DefaultDiagramAction {
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
-        this.eventBus.publish(new PresentationElementsSelectedEvent(getSelected()));
+        this.eventBus.publish(new PresentationElementsSelectedEvent(getSelected().toArray(new PresentationElement[0])));
     }
 
 }
