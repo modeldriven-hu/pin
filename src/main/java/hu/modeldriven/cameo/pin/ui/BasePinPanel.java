@@ -76,13 +76,19 @@ public class BasePinPanel extends javax.swing.JPanel {
         jLabel3.setText("Select multiplicity:");
 
         clonePropertiesCheckBox.setText("Clone properties");
+        clonePropertiesCheckBox.setName("clonePropertiesCheckBox"); // NOI18N
 
         propertiesPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Properties"));
         propertiesPanel.setEnabled(false);
+        propertiesPanel.setName("propertiesPanel"); // NOI18N
 
         jLabel4.setText("Source pin:");
 
+        sourcePinComboBox.setName("sourcePinComboBox"); // NOI18N
+
         jLabel5.setText("Clone methods:");
+
+        cloneMethodsComboBox.setName("cloneMethodsComboBox"); // NOI18N
 
         javax.swing.GroupLayout propertiesPanelLayout = new javax.swing.GroupLayout(propertiesPanel);
         propertiesPanel.setLayout(propertiesPanelLayout);
@@ -150,8 +156,10 @@ public class BasePinPanel extends javax.swing.JPanel {
         );
 
         cancelButton.setText("Cancel");
+        cancelButton.setName("cancelButton"); // NOI18N
 
         applyButton.setText("Apply");
+        applyButton.setName("applyButton"); // NOI18N
 
         javax.swing.GroupLayout bottomPanelLayout = new javax.swing.GroupLayout(bottomPanel);
         bottomPanel.setLayout(bottomPanelLayout);

@@ -41,6 +41,8 @@ public class CloneSourceImpl implements CloneSource {
                         pin.setType(sourcePin.getType());
                         break;
 
+                    default:
+                        break;
                 }
 
             }

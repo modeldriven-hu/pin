@@ -27,16 +27,4 @@ public class EventBus {
         subscriptions.get(eventClass).add(eventHandler);
     }
 
-    public <T extends Event> void unsubscribe(EventHandler<T> eventHandler) {
-        for (var entry : subscriptions.entrySet()) {
-            entry.getValue().remove(eventHandler);
-        }
-    }
-
-    public void unsubscribeAll() {
-        for (var entry : subscriptions.entrySet()) {
-            entry.getValue().clear();
-        }
-    }
-
 }

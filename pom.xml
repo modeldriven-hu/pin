@@ -16,7 +16,7 @@
         <sonar.issue.ignore.multicriteria>e1</sonar.issue.ignore.multicriteria>
         <sonar.issue.ignore.multicriteria.e1.ruleKey>xml:S3422</sonar.issue.ignore.multicriteria.e1.ruleKey>
         <sonar.issue.ignore.multicriteria.e1.resourceKey>**/pom.xml</sonar.issue.ignore.multicriteria.e1.resourceKey>
-        <sonar.coverage.exclusions>**/PinAction.java,**/PinConfigurator.java</sonar.coverage.exclusions>
+        <sonar.coverage.exclusions>**/PinAction.java,**/PinConfigurator.java,**/MagicDraw.java</sonar.coverage.exclusions>
     </properties>
     <profiles>
         <profile>
@@ -121,6 +121,12 @@
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest-library</artifactId>
             <version>2.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.caciocavallosilano</groupId>
+            <artifactId>cacio-tta</artifactId>
+            <version>1.11</version>
             <scope>test</scope>
         </dependency>
         <dependency>
