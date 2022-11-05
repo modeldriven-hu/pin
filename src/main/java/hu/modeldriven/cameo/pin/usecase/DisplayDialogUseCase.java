@@ -29,7 +29,7 @@ public class DisplayDialogUseCase implements UseCase {
                 ).collect(Collectors.toList());
 
         this.dialog.setSelectedPins(selectedPins);
-        dialog.setVisible(true);
+        this.dialog.setVisible(true);
     }
 
 }

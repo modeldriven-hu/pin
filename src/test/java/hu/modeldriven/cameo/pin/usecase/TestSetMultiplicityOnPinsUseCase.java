@@ -6,10 +6,13 @@ import com.nomagic.uml2.ext.magicdraw.classes.mdkernel.LiteralUnlimitedNatural;
 import com.nomagic.uml2.ext.magicdraw.classes.mdkernel.ValueSpecification;
 import hu.modeldriven.cameo.pin.event.ApplyChangeRequestedEvent;
 import hu.modeldriven.cameo.pin.event.CloseDialogRequestedEvent;
+import hu.modeldriven.cameo.pin.event.ExceptionOccuredEvent;
 import hu.modeldriven.cameo.pin.event.PinMultiplicitySetEvent;
+import hu.modeldriven.cameo.pin.model.CloneMethod;
 import hu.modeldriven.cameo.pin.model.CloneSource;
 import hu.modeldriven.cameo.pin.model.ModelElementId;
 import hu.modeldriven.cameo.pin.model.Multiplicity;
+import hu.modeldriven.cameo.pin.model.clone.CloneSourceImpl;
 import hu.modeldriven.cameo.pin.model.multiplicity.*;
 import hu.modeldriven.core.eventbus.EventBus;
 import hu.modeldriven.core.magicdraw.MagicDraw;
@@ -20,6 +23,7 @@ import org.mockito.*;
 import org.mockito.internal.util.collections.Sets;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.Set;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -141,5 +145,26 @@ class TestSetMultiplicityOnPinsUseCase {
 
         return new Pair<>(literalInteger, literalUnlimitedNatural);
     }
+
+
+    @Test
+    public void throwExceptionTest(){
+        when(magicDraw.existsActiveProject()).thenReturn(true);
+
+        var modelElementId = Mockito.mock(ModelElementId.class);
+
+        when(modelElementId.getId()).thenThrow(NullPointerException.class);
+        // when one element is selected as the source of clone with an action clone name
+
+        eventBus.publish(new ApplyChangeRequestedEvent(Set.of(modelElementId)
+                , Mockito.mock(Multiplicity.class),
+                null));
+
+        verify(magicDraw).cancelSession();
+
+        verify(eventBus, atLeast(1)).publish(any(ExceptionOccuredEvent.class));
+    }
+
+
 
 }

@@ -7,6 +7,7 @@ import com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Type;
 import com.nomagic.uml2.ext.magicdraw.classes.mdkernel.ValueSpecification;
 import hu.modeldriven.cameo.pin.event.ApplyChangeRequestedEvent;
 import hu.modeldriven.cameo.pin.event.CloseDialogRequestedEvent;
+import hu.modeldriven.cameo.pin.event.ExceptionOccuredEvent;
 import hu.modeldriven.cameo.pin.event.PinMultiplicitySetEvent;
 import hu.modeldriven.cameo.pin.model.CloneMethod;
 import hu.modeldriven.cameo.pin.model.CloneSource;
@@ -43,7 +44,6 @@ class TestCloneNameAndTypeFromPinUseCase {
 
     @Mock
     MagicDraw magicDraw;
-
 
     @Test
     void testNoActiveProjectGeneratesCloseDialogRequestedEvent() {
@@ -169,6 +169,25 @@ class TestCloneNameAndTypeFromPinUseCase {
         // but no modification occurs on the source pin
         verify(pin1, never()).setName(anyString());
         verify(pin1, never()).setType(any());
+    }
+
+
+    @Test
+    public void throwExceptionTest(){
+        when(magicDraw.existsActiveProject()).thenReturn(true);
+
+        var modelElementId = Mockito.mock(ModelElementId.class);
+
+        when(modelElementId.getId()).thenThrow(NullPointerException.class);
+        // when one element is selected as the source of clone with an action clone name
+
+        eventBus.publish(new ApplyChangeRequestedEvent(Set.of(modelElementId)
+                , null,
+                new CloneSourceImpl(modelElementId, CloneMethod.NAME)));
+
+        verify(magicDraw).cancelSession();
+
+        verify(eventBus, atLeast(1)).publish(any(ExceptionOccuredEvent.class));
     }
 
 }
