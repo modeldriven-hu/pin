@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class TestDisplayDialogUseCase {
+class TestDisplayDialogUseCase {
 
     @Spy
     EventBus eventBus;
@@ -33,7 +33,7 @@ public class TestDisplayDialogUseCase {
     ArgumentCaptor<List<SourcePin>> captor;
 
     @Test
-    public void testDisplayDialogForPinWithType() {
+    void testDisplayDialogForPinWithType() {
 
         var type = mock(Type.class);
         when(type.getName()).thenReturn("type");
@@ -55,7 +55,7 @@ public class TestDisplayDialogUseCase {
     }
 
     @Test
-    public void testDisplayDialogForPinWithoutType() {
+    void testDisplayDialogForPinWithoutType() {
 
         var pin = mock(Pin.class);
         var id = UUID.randomUUID().toString();

@@ -163,7 +163,7 @@ class TestCloneNameAndTypeFromPinUseCase {
 
 
     @Test
-    public void throwExceptionTest() {
+    void throwExceptionTest() {
         when(magicDraw.existsActiveProject()).thenReturn(true);
 
         var modelElementId = Mockito.mock(ModelElementId.class);

@@ -27,7 +27,7 @@ import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.verify;
 
 @RunWith(CacioAssertJRunner.class)
-public class TestPinPanel {
+class TestPinPanel {
 
     @Spy
     EventBus eventBus;
@@ -40,12 +40,12 @@ public class TestPinPanel {
     PinPanel panel;
 
     @BeforeAll
-    public static void beforeAll() {
+    static void beforeAll() {
         System.setProperty("cacio.managed.screensize", "1920x1080");
     }
 
     @BeforeEach
-    public void beforeEach() {
+    void beforeEach() {
         MockitoAnnotations.openMocks(this);
         panel = new PinPanel(eventBus, magicDraw);
         ff = Containers.showInFrame(panel);
@@ -53,24 +53,24 @@ public class TestPinPanel {
     }
 
     @AfterEach
-    public void afterEach() {
+    void afterEach() {
         ff.cleanUp();
     }
 
     @Test
-    public void testApply() {
+    void testApply() {
         ff.button("applyButton").click();
         verify(eventBus, atLeastOnce()).publish(any(ApplyChangeRequestedEvent.class));
     }
 
     @Test
-    public void testCancel() {
+    void testCancel() {
         ff.button("cancelButton").click();
         verify(eventBus, atLeastOnce()).publish(any(CloseDialogRequestedEvent.class));
     }
 
     @Test
-    public void testCloneCheckBox() {
+    void testCloneCheckBox() {
 
         panel.setSelectedPins(List.of(new SourcePin(new ModelElementId("1"), "1")));
 
