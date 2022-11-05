@@ -3,13 +3,8 @@ package hu.modeldriven.cameo.pin.usecase;
 import com.nomagic.uml2.ext.magicdraw.actions.mdbasicactions.OpaqueAction;
 import com.nomagic.uml2.ext.magicdraw.actions.mdbasicactions.Pin;
 import hu.modeldriven.cameo.pin.MagicDrawMock;
-import hu.modeldriven.cameo.pin.event.ApplyChangeRequestedEvent;
-import hu.modeldriven.cameo.pin.event.ExceptionOccuredEvent;
 import hu.modeldriven.cameo.pin.event.PinsAvailableEvent;
 import hu.modeldriven.cameo.pin.event.PresentationElementsSelectedEvent;
-import hu.modeldriven.cameo.pin.model.CloneMethod;
-import hu.modeldriven.cameo.pin.model.ModelElementId;
-import hu.modeldriven.cameo.pin.model.clone.CloneSourceImpl;
 import hu.modeldriven.core.eventbus.EventBus;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -19,12 +14,11 @@ import org.mockito.Mockito;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.Set;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
 
 @ExtendWith(MockitoExtension.class)
 class TestFilterSelectedPresentationElementsUseCase {

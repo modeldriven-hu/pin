@@ -1,35 +1,25 @@
 package hu.modeldriven.cameo.pin.usecase;
 
 import com.nomagic.uml2.ext.magicdraw.actions.mdbasicactions.Pin;
-import com.nomagic.uml2.ext.magicdraw.classes.mdkernel.LiteralInteger;
-import com.nomagic.uml2.ext.magicdraw.classes.mdkernel.LiteralUnlimitedNatural;
 import com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Type;
-import com.nomagic.uml2.ext.magicdraw.classes.mdkernel.ValueSpecification;
 import hu.modeldriven.cameo.pin.event.ApplyChangeRequestedEvent;
 import hu.modeldriven.cameo.pin.event.CloseDialogRequestedEvent;
 import hu.modeldriven.cameo.pin.event.ExceptionOccuredEvent;
-import hu.modeldriven.cameo.pin.event.PinMultiplicitySetEvent;
 import hu.modeldriven.cameo.pin.model.CloneMethod;
-import hu.modeldriven.cameo.pin.model.CloneSource;
 import hu.modeldriven.cameo.pin.model.ModelElementId;
-import hu.modeldriven.cameo.pin.model.Multiplicity;
 import hu.modeldriven.cameo.pin.model.clone.CloneSourceImpl;
-import hu.modeldriven.cameo.pin.model.multiplicity.*;
 import hu.modeldriven.core.eventbus.EventBus;
 import hu.modeldriven.core.magicdraw.MagicDraw;
-import org.javatuples.Pair;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.*;
-import org.mockito.internal.util.collections.Sets;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Set;
-import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
@@ -53,7 +43,7 @@ class TestCloneNameAndTypeFromPinUseCase {
     }
 
     @Test
-    void testCloneName(){
+    void testCloneName() {
 
         // given there is an active project and
 
@@ -93,7 +83,7 @@ class TestCloneNameAndTypeFromPinUseCase {
     }
 
     @Test
-    void testCloneType(){
+    void testCloneType() {
         // given there is an active project and
 
         when(magicDraw.existsActiveProject()).thenReturn(true);
@@ -134,7 +124,7 @@ class TestCloneNameAndTypeFromPinUseCase {
     }
 
     @Test
-    void testCloneNameAndType(){
+    void testCloneNameAndType() {
         when(magicDraw.existsActiveProject()).thenReturn(true);
 
         // there are multiple pins with id, name and type
@@ -173,7 +163,7 @@ class TestCloneNameAndTypeFromPinUseCase {
 
 
     @Test
-    public void throwExceptionTest(){
+    public void throwExceptionTest() {
         when(magicDraw.existsActiveProject()).thenReturn(true);
 
         var modelElementId = Mockito.mock(ModelElementId.class);

@@ -8,11 +8,9 @@ import hu.modeldriven.cameo.pin.event.ApplyChangeRequestedEvent;
 import hu.modeldriven.cameo.pin.event.CloseDialogRequestedEvent;
 import hu.modeldriven.cameo.pin.event.ExceptionOccuredEvent;
 import hu.modeldriven.cameo.pin.event.PinMultiplicitySetEvent;
-import hu.modeldriven.cameo.pin.model.CloneMethod;
 import hu.modeldriven.cameo.pin.model.CloneSource;
 import hu.modeldriven.cameo.pin.model.ModelElementId;
 import hu.modeldriven.cameo.pin.model.Multiplicity;
-import hu.modeldriven.cameo.pin.model.clone.CloneSourceImpl;
 import hu.modeldriven.cameo.pin.model.multiplicity.*;
 import hu.modeldriven.core.eventbus.EventBus;
 import hu.modeldriven.core.magicdraw.MagicDraw;
@@ -148,7 +146,7 @@ class TestSetMultiplicityOnPinsUseCase {
 
 
     @Test
-    public void throwExceptionTest(){
+    public void throwExceptionTest() {
         when(magicDraw.existsActiveProject()).thenReturn(true);
 
         var modelElementId = Mockito.mock(ModelElementId.class);
@@ -164,7 +162,6 @@ class TestSetMultiplicityOnPinsUseCase {
 
         verify(eventBus, atLeast(1)).publish(any(ExceptionOccuredEvent.class));
     }
-
 
 
 }

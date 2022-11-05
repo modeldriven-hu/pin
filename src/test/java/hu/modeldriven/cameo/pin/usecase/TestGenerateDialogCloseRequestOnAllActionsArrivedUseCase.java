@@ -23,26 +23,26 @@ class TestGenerateDialogCloseRequestOnAllActionsArrivedUseCase {
     GenerateDialogCloseRequestOnAllActionsArrivedUseCase useCase;
 
     @Test
-    void testOnlyMultiplicitySet(){
+    void testOnlyMultiplicitySet() {
         eventBus.publish(new PinMultiplicitySetEvent());
         verify(eventBus, never()).publish(any(CloseDialogRequestedEvent.class));
     }
 
     @Test
-    void testOnlyNameAndTypeCloned(){
+    void testOnlyNameAndTypeCloned() {
         eventBus.publish(new PinNameAndTypeClonedEvent());
         verify(eventBus, never()).publish(any(CloseDialogRequestedEvent.class));
     }
 
     @Test
-    void testMultiplicitySetThenNameAndTypeCloned(){
+    void testMultiplicitySetThenNameAndTypeCloned() {
         eventBus.publish(new PinMultiplicitySetEvent());
         eventBus.publish(new PinNameAndTypeClonedEvent());
         verify(eventBus, atLeastOnce()).publish(any(CloseDialogRequestedEvent.class));
     }
 
     @Test
-    void testNameAndTypeClonedThenMultiplicitySet(){
+    void testNameAndTypeClonedThenMultiplicitySet() {
         eventBus.publish(new PinNameAndTypeClonedEvent());
         eventBus.publish(new PinMultiplicitySetEvent());
         verify(eventBus, atLeastOnce()).publish(any(CloseDialogRequestedEvent.class));

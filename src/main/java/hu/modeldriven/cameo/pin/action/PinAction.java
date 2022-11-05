@@ -6,14 +6,12 @@ import hu.modeldriven.cameo.pin.event.PresentationElementsSelectedEvent;
 import hu.modeldriven.cameo.pin.ui.PinDialog;
 import hu.modeldriven.cameo.pin.usecase.*;
 import hu.modeldriven.core.eventbus.EventBus;
-import hu.modeldriven.core.jacoco.SkipBecauseGenerated;
 import hu.modeldriven.core.magicdraw.MagicDraw;
 import hu.modeldriven.core.usecase.UseCase;
 import hu.modeldriven.core.usecase.UseCaseRepository;
 
 import java.awt.event.ActionEvent;
 
-@SkipBecauseGenerated
 public class PinAction extends DefaultDiagramAction {
 
     private final transient EventBus eventBus;
