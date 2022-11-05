@@ -3,7 +3,9 @@ package hu.modeldriven.cameo.pin.action;
 import com.nomagic.actions.AMConfigurator;
 import com.nomagic.actions.ActionsManager;
 import com.nomagic.magicdraw.actions.MDActionsCategory;
+import hu.modeldriven.core.jacoco.SkipBecauseGenerated;
 
+@SkipBecauseGenerated
 public class PinConfigurator implements AMConfigurator {
 
     private final PinAction action;
