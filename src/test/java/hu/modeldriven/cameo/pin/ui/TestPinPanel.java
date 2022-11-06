@@ -7,8 +7,11 @@ import hu.modeldriven.cameo.pin.model.ModelElementId;
 import hu.modeldriven.cameo.pin.model.SourcePin;
 import hu.modeldriven.core.eventbus.EventBus;
 import hu.modeldriven.core.magicdraw.MagicDraw;
-import org.assertj.swing.fixture.Containers;
-import org.assertj.swing.fixture.FrameFixture;
+import org.assertj.swing.annotation.GUITest;
+import org.assertj.swing.edt.GuiActionRunner;
+import org.assertj.swing.edt.GuiTask;
+import org.assertj.swing.fixture.DialogFixture;
+import org.junit.Assert;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -35,63 +38,73 @@ class TestPinPanel {
     @Mock
     MagicDraw magicDraw;
 
-    FrameFixture ff;
+    DialogFixture fixture;
 
-    PinPanel panel;
-
-    @BeforeAll
-    static void beforeAll() {
-        System.setProperty("cacio.managed.screensize", "1920x1080");
-    }
+    PinDialog dialog;
 
     @BeforeEach
     void beforeEach() {
         MockitoAnnotations.openMocks(this);
-        panel = new PinPanel(eventBus, magicDraw);
-        ff = Containers.showInFrame(panel);
-        ff.target().setSize(400, 400);
+
+        dialog = new PinDialog(null, eventBus, magicDraw);
+        dialog.setVisible(true);
+
+        fixture = new DialogFixture(dialog);
     }
 
     @AfterEach
     void afterEach() {
-        ff.cleanUp();
+        fixture.cleanUp();
+
+        GuiActionRunner.execute(new GuiTask() {
+            @Override
+            protected void executeInEDT() {
+                dialog.dispose();
+                dialog = null;
+            }
+        });
     }
 
     @Test
+    @GUITest
     void testApply() {
-        ff.button("applyButton").click();
+        fixture.button("applyButton").click();
         verify(eventBus, atLeastOnce()).publish(any(ApplyChangeRequestedEvent.class));
     }
 
+
     @Test
+    @GUITest
     void testCancel() {
-        ff.button("cancelButton").click();
+        fixture.button("cancelButton").click();
         verify(eventBus, atLeastOnce()).publish(any(CloseDialogRequestedEvent.class));
     }
 
+
     @Test
+    @GUITest
     void testCloneCheckBox() {
 
-        panel.setSelectedPins(List.of(new SourcePin(new ModelElementId("1"), "1")));
+        dialog.setSelectedPins(List.of(new SourcePin(new ModelElementId("1"), "1")));
 
-        assertFalse(ff.comboBox("sourcePinComboBox").isEnabled());
-        assertFalse(ff.comboBox("cloneMethodsComboBox").isEnabled());
-        assertFalse(ff.panel("propertiesPanel").isEnabled());
+        assertFalse(fixture.comboBox("sourcePinComboBox").isEnabled());
+        assertFalse(fixture.comboBox("cloneMethodsComboBox").isEnabled());
+        assertFalse(fixture.panel("propertiesPanel").isEnabled());
 
-        ff.checkBox("clonePropertiesCheckBox").check();
+        fixture.checkBox("clonePropertiesCheckBox").check();
 
-        assertTrue(ff.comboBox("sourcePinComboBox").isEnabled());
-        assertTrue(ff.comboBox("cloneMethodsComboBox").isEnabled());
-        assertTrue(ff.panel("propertiesPanel").isEnabled());
+        assertTrue(fixture.comboBox("sourcePinComboBox").isEnabled());
+        assertTrue(fixture.comboBox("cloneMethodsComboBox").isEnabled());
+        assertTrue(fixture.panel("propertiesPanel").isEnabled());
 
-        ff.comboBox("sourcePinComboBox").selectItem(0);
+        fixture.comboBox("sourcePinComboBox").selectItem(0);
 
-        ff.button("applyButton").click();
+        fixture.button("applyButton").click();
         verify(eventBus, atLeastOnce()).publish(any(ApplyChangeRequestedEvent.class));
 
-        ff.checkBox("clonePropertiesCheckBox").uncheck();
+        fixture.checkBox("clonePropertiesCheckBox").uncheck();
 
-        ff.button("applyButton").click();
+        fixture.button("applyButton").click();
         verify(eventBus, atLeastOnce()).publish(any(ApplyChangeRequestedEvent.class));
     }
 
