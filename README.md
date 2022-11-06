@@ -1,10 +1,7 @@
-# Cameo/MagicDraw plugin development - Lesson 3
+# Pin plugin
 
-This is the third lesson of the series. In this lesson we will learn how to work with model elements.p
-
-Reference documentation:
-
-* https://docs.nomagic.com/display/MD2021xR2/Invoking+actions
+This plugin provides support for pins in activity diagrams, it allows easier setting pin multiplicity
+and cloning pin names and types as well.
 
 # Requirements
 
@@ -16,7 +13,7 @@ Reference documentation:
 
 ## Check out the repository
 
-`git clone https://github.com/modeldriven-hu/cameo_lesson_2.git`
+`git clone https://github.com/modeldriven-hu/pin.git`
 
 ## Configure environment variable
 
@@ -34,7 +31,7 @@ or when using PowerShell:
 
 ## Extract into Cameo plugins folder
 
-Extract `target/hu.modeldriven.cameo.lesson2.zip` into `CAMEO_ROOT/plugins`
+Extract `target/hu.modeldriven.cameo.pin.zip` into `CAMEO_ROOT/plugins`
 
 ## Restart
 
