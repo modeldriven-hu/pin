@@ -3,6 +3,12 @@
 This plugin provides support for pins in activity diagrams, it allows easier setting pin multiplicity
 and cloning pin names and types as well.
 
+# Screenshots
+
+![image](https://user-images.githubusercontent.com/8182138/200180344-c5302658-eb1e-425b-9cae-9a724f428025.png)
+
+# Functionality
+
 # Requirements
 
 - Cameo/MagicDraw latest
