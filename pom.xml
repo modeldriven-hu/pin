@@ -17,7 +17,7 @@
         <sonar.issue.ignore.multicriteria.e1.ruleKey>xml:S3422</sonar.issue.ignore.multicriteria.e1.ruleKey>
         <sonar.issue.ignore.multicriteria.e1.resourceKey>**/pom.xml</sonar.issue.ignore.multicriteria.e1.resourceKey>
         <sonar.exclusions>**/BasePinPanel.java</sonar.exclusions>
-        <sonar.coverage.exclusions>**/PinAction.java,**/PinConfigurator.java,**/MagicDraw.java,**/PinDialog.java</sonar.coverage.exclusions>
+        <sonar.coverage.exclusions>**/PinAction.java,**/PinConfigurator.java,**/MagicDraw.java</sonar.coverage.exclusions>
     </properties>
     <profiles>
         <profile>
