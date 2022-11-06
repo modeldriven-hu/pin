@@ -9,6 +9,11 @@ and cloning pin names and types as well.
 
 # Functionality
 
+ - Set multiplicity on one or multiple pins
+ - Clone pin's name or 
+ - Clone pin's type or
+ - Clone both pin's name and type
+
 # Requirements
 
 - Cameo/MagicDraw latest
